@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Web.WebView2.Core;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,7 +28,9 @@ namespace SimplySaveWindows
         {
             try
             {
-                await webView.EnsureCoreWebView2Async();
+                var op = new CoreWebView2EnvironmentOptions("--disable-web-security");
+                var env = await CoreWebView2Environment.CreateAsync(null, null, op);
+                await webView.EnsureCoreWebView2Async(env);
 
                 webView.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
 
