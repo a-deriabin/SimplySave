@@ -1,15 +1,20 @@
 import React from 'react';
 import Container from "../../shared/components/Container";
+import styles from './styles.module.scss'
+import FolderBox from "./FolderBox";
+import Stack from "../../shared/components/Stack";
 
 function Folders() {
     return (
-        <Container style={{
-            width: '100px',
-            height: '100vh',
-            backgroundColor: 'var(--color-secondary)',
-            color: 'var(--color-text-contrast-pale)',
-        }}>
-            folders
+        <Container verticalAlign='start' className={styles.foldersContainer}>
+            <Stack direction='column'>
+                <Container flex={1}>
+                    todo
+                </Container>
+                <Container style={{ height: 100 }}>
+                    <FolderBox icon='settings' title='Settings' />
+                </Container>
+            </Stack>
         </Container>
     );
 }

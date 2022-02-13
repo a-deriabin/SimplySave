@@ -6,7 +6,7 @@ import NoteContentView from "../NoteContentView";
 
 function DesktopView() {
     return (
-        <Stack direction='row' fullWidth>
+        <Stack direction='row'>
             <Container flex={5}>
                 <NotesListView />
             </Container>

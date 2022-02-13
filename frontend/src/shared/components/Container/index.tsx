@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './styles.module.scss'
 
 type ContainerProps = {
     children: React.ReactNode,
@@ -11,13 +12,12 @@ type ContainerProps = {
 }
 
 function Container(props: ContainerProps) {
+    const className = `${styles.container} ${props.className ?? ''}`
+
     return (
-        <div className={props.className} style={{
-            display: 'flex',
-            flexDirection: 'row',
+        <div className={className} style={{
             alignItems: props.verticalAlign ?? 'center',
             justifyContent: props.horizontalAlign ?? 'center',
-            width: props.fullWidth ? '100%' : undefined,
             flex: props.flex ?? undefined,
             ...props.style
         }}>

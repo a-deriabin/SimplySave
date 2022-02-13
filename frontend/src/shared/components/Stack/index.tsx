@@ -4,19 +4,24 @@ import styles from './styles.module.scss';
 type StackProps = {
     children: React.ReactNode,
     direction?: 'row' | 'column',
-    fullWidth?: boolean,
+    justify?: 'flex-start' | 'center' | 'flex-end' |
+        'space-around' | 'space-between' | 'space-evenly' | 'stretch',
+    align?: 'start' | 'center' | 'end' | 'stretch',
     flex?: number,
     gap?: number | string,
+    className?: string,
     style?: React.CSSProperties,
 }
 
 function Stack(props: StackProps) {
+    const className = `${styles.stack} ${props.className ?? ''}`
     return (
-        <div className={styles.stack} style={{
+        <div className={className} style={{
             flexDirection: props.direction ?? 'column',
-            width: props.fullWidth ? '100%' : undefined,
-            flex: props.flex ?? undefined,
-            gap: props.gap ?? undefined,
+            justifyContent: props.align,
+            alignItems: props.align,
+            flex: props.flex,
+            gap: props.gap,
             ...props.style
         }}>
             {props.children}

@@ -6,7 +6,7 @@ import NotesList from "./NotesList/index";
 
 function NotesListView() {
     return (
-        <Stack direction='row' fullWidth>
+        <Stack direction='row'>
             <Folders />
             <Stack direction='column' flex={1} style={{
                 borderRight: '1px solid var(--color-border)'
