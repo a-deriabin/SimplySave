@@ -1,10 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#000000" />
-  <title>SimplySave frontend</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="theme-color" content="#000000"/>
+    <title>SimplySave frontend</title>
+    <script type="text/javascript">
+        // Placeholder API. Real implementation should be provided by wrapper app.
+        window._simplysave_load = async () => {
+            return {
+                notes: [
+                    {
+                        id: '1',
+                        title: 'Test note',
+                        folderId: 'demo',
+                        createdTimestamp: 0,
+                        editedTimestamp: 0,
+                        isPrivate: false
+                    },
+                    {
+                        id: '2', title: 'Very nice note',
+                        folderId: 'demo',
+                        createdTimestamp: 0,
+                        editedTimestamp: 0,
+                        isPrivate: false
+                    },
+                    {
+                        id: '3', title: 'Something else!',
+                        folderId: 'demo',
+                        createdTimestamp: 0,
+                        editedTimestamp: 0,
+                        isPrivate: false
+                    },
+                ],
+                folders: [
+                    { id: 'demo', title: 'Demo folder', icon: 'star' }
+                ]
+            }
+        }
+    </script>
 </head>
 <body>
 <noscript>You need to enable JavaScript to run this app.</noscript>
