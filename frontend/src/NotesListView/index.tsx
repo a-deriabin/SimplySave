@@ -2,9 +2,9 @@ import React from 'react';
 import Folders from "./Folders";
 import Stack from "../shared/components/Stack";
 import SearchBar from "./SearchBar";
-import Notes from "./Notes";
+import NotesList from "./NotesList/index";
 
-function NotesList() {
+function NotesListView() {
     return (
         <Stack direction='row' fullWidth>
             <Folders />
@@ -12,10 +12,10 @@ function NotesList() {
                 borderRight: '1px solid var(--color-border)'
             }}>
                 <SearchBar />
-                <Notes />
+                <NotesList />
             </Stack>
         </Stack>
     );
 }
 
-export default NotesList;
+export default NotesListView;

@@ -6,6 +6,7 @@ type StackProps = {
     direction?: 'row' | 'column',
     fullWidth?: boolean,
     flex?: number,
+    gap?: number | string,
     style?: React.CSSProperties,
 }
 
@@ -15,6 +16,7 @@ function Stack(props: StackProps) {
             flexDirection: props.direction ?? 'column',
             width: props.fullWidth ? '100%' : undefined,
             flex: props.flex ?? undefined,
+            gap: props.gap ?? undefined,
             ...props.style
         }}>
             {props.children}

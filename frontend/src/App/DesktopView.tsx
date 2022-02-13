@@ -1,17 +1,17 @@
 import React from 'react';
-import NotesList from "../NotesList";
-import NoteView from "../NoteView";
 import Stack from '../shared/components/Stack';
 import Container from "../shared/components/Container";
+import NotesListView from "../NotesListView";
+import NoteContentView from "../NoteContentView";
 
 function DesktopView() {
     return (
         <Stack direction='row' fullWidth>
             <Container flex={5}>
-                <NotesList />
+                <NotesListView />
             </Container>
             <Container flex={7}>
-                <NoteView />
+                <NoteContentView />
             </Container>
         </Stack>
     );

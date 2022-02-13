@@ -15,8 +15,8 @@ function Container(props: ContainerProps) {
         <div className={props.className} style={{
             display: 'flex',
             flexDirection: 'row',
-            justifyContent: props.verticalAlign ?? 'center',
-            alignItems: props.horizontalAlign ?? 'center',
+            alignItems: props.verticalAlign ?? 'center',
+            justifyContent: props.horizontalAlign ?? 'center',
             width: props.fullWidth ? '100%' : undefined,
             flex: props.flex ?? undefined,
             ...props.style
