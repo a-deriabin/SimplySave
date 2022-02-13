@@ -6,11 +6,11 @@ import NotesList from "./NotesList/index";
 
 function NotesListView() {
     return (
-        <Stack direction='row'>
+        <Stack direction='row' style={{
+            borderRight: '1px solid var(--color-border)'
+        }}>
             <Folders />
-            <Stack direction='column' flex={1} style={{
-                borderRight: '1px solid var(--color-border)'
-            }}>
+            <Stack direction='column' flex={1}>
                 <SearchBar />
                 <NotesList />
             </Stack>

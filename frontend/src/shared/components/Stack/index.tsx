@@ -11,6 +11,7 @@ type StackProps = {
     gap?: number | string,
     className?: string,
     style?: React.CSSProperties,
+    onClick?: () => void,
 }
 
 function Stack(props: StackProps) {
@@ -23,7 +24,7 @@ function Stack(props: StackProps) {
             flex: props.flex,
             gap: props.gap,
             ...props.style
-        }}>
+        }} onClick={props.onClick}>
             {props.children}
         </div>
     );

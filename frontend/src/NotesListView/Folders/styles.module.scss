@@ -1,12 +1,25 @@
 .foldersContainer {
-    width: 100px;
+    width: 70px;
     height: 100vh;
     background-color: var(--color-secondary);
     color: var(--color-text-contrast-pale);
+    font-size: 14px;
+}
 
+.folderBox {
+    cursor: pointer;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    transition-property: background-color;
+    transition-duration: 250ms;
+
+    &:active {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
 }
 
 .folderIcon {
-    width: 45px;
-    height: 45px;
+    width: 30px;
+    height: 30px;
 }
