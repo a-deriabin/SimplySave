@@ -32,11 +32,6 @@ function FolderList(props: FolderListProps) {
                         key={folder.id}
                     />
                 ))}
-                <FolderBox
-                    icon='add'
-                    title='New folder'
-                    isSelected={false}
-                />
             </Stack>
         </Container>
     );

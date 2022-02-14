@@ -9,6 +9,7 @@ type ContainerProps = {
     flex?: number,
     style?: React.CSSProperties,
     className?: string,
+    onClick?: (e: React.MouseEvent) => boolean,
 }
 
 function Container(props: ContainerProps) {
@@ -20,7 +21,8 @@ function Container(props: ContainerProps) {
             justifyContent: props.horizontalAlign ?? 'center',
             flex: props.flex ?? undefined,
             ...props.style
-        }}>
+        }}
+        onClick={props.onClick}>
             {props.children}
         </div>
     );
