@@ -1,5 +1,5 @@
 import React from 'react';
-import Folders from "./Folders";
+import Folders from "./SidePanel";
 import Stack from "../shared/components/Stack";
 import SearchBar from "./SearchBar";
 import NotesList from "./NotesList/index";

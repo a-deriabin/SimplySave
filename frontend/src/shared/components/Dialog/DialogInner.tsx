@@ -13,10 +13,13 @@ function DialogInner(props: DialogProps) {
         props.onClose && props.onClose()
     }
 
+    const innerClass = props.className ? `${styles.dialogInner} ${props.className}`
+        : styles.dialogInner
+
     return (
         <div className={styles.dialogOuter} onClick={handleBackgroundClick}>
             <Container>
-                <div className={styles.dialogInner} onClick={handleDialogClick}>
+                <div className={innerClass} onClick={handleDialogClick} style={props.style}>
                     {props.children}
                 </div>
             </Container>

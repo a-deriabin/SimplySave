@@ -1,11 +1,12 @@
 import React, {useRef} from 'react';
 import ReactDOM from "react-dom";
 import DialogInner from "./DialogInner";
-import styles from './styles.module.css'
 
 export type DialogProps = {
     isVisible: boolean,
     onClose?: () => void,
+    className?: string,
+    style?: React.CSSProperties,
     children: React.ReactNode,
 }
 

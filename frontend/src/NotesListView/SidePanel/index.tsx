@@ -4,7 +4,7 @@ import styles from './styles.module.scss'
 import FolderBox from "./FolderBox";
 import Stack from "../../shared/components/Stack";
 import FolderList from "./FolderList";
-import Dialog from "../../shared/components/Dialog";
+import AddDialog from "./AddDialog";
 
 function Folders() {
     const [isAddOpen, setIsAddOpen] = useState(false)
@@ -34,9 +34,7 @@ function Folders() {
                     />
                 </Stack>
             </Stack>
-            <Dialog isVisible={isAddOpen} onClose={handleAddClose}>
-                todo
-            </Dialog>
+            <AddDialog isVisible={isAddOpen} onClose={handleAddClose} />
         </Container>
     );
 }

@@ -10,9 +10,11 @@
 
 .dialogInner {
     background-color: #FFFFFF;
-    min-width: 360px;
-    min-height: 360px;
+    min-width: 50px;
+    min-height: 50px;
     border: 1px solid var(--color-border);
     border-radius: 5px;
     z-index: 10100;
+    padding: 5px;
 }
+
