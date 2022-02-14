@@ -17,7 +17,7 @@ function DialogInner(props: DialogProps) {
         <div className={styles.dialogOuter} onClick={handleBackgroundClick}>
             <Container>
                 <div className={styles.dialogInner} onClick={handleDialogClick}>
-                    test!!
+                    {props.children}
                 </div>
             </Container>
         </div>

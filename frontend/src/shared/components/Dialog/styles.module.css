@@ -13,5 +13,6 @@
     min-width: 360px;
     min-height: 360px;
     border: 1px solid var(--color-border);
+    border-radius: 5px;
     z-index: 10100;
 }
