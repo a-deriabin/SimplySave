@@ -15,7 +15,12 @@ function Folders() {
             <Stack direction='column'>
                 <FolderList />
                 <Container style={{ height: 'auto' }}>
-                    <FolderBox icon='settings' title='Settings' onClick={handleSettingsClick} />
+                    <FolderBox
+                        icon='settings'
+                        title='Settings'
+                        isSelected={false}
+                        onClick={handleSettingsClick}
+                    />
                 </Container>
             </Stack>
         </Container>

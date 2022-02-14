@@ -2,21 +2,41 @@ import React from 'react';
 import FolderBox from "./FolderBox";
 import Container from "../../shared/components/Container";
 import Stack from "../../shared/components/Stack";
-import {useSelector} from "react-redux";
-import {notesSelector} from "../../shared/redux/notes/notesSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {notesSelector, selectFolder} from "../../shared/redux/notes/notesSlice";
+import SelectableFolder from "./SelectableFolder";
 
 type FolderListProps = {}
 
 function FolderList(props: FolderListProps) {
+    const dispatch = useDispatch()
     const notesData = useSelector(notesSelector)
+
+    const handleHomeClick = () => {
+        dispatch(selectFolder(null))
+    }
 
     return (
         <Container flex={1} style={{ overflowY: 'auto' }}>
             <Stack direction='column'>
-                <FolderBox icon='home' title='All' />
+                <FolderBox
+                    icon='home'
+                    title='All'
+                    isSelected={notesData.openFolderId === null}
+                    onClick={handleHomeClick}
+                />
                 {notesData.foldersList.map(folder => (
-                    <FolderBox icon={folder.icon} title={folder.title} key={folder.id} />
+                    <SelectableFolder
+                        data={folder}
+                        isSelected={folder.id === notesData.openFolderId}
+                        key={folder.id}
+                    />
                 ))}
+                <FolderBox
+                    icon='add'
+                    title='New folder'
+                    isSelected={false}
+                />
             </Stack>
         </Container>
     );

@@ -15,10 +15,10 @@ export type FolderType = {
 
 export type StateType = {
     notesList: NoteType[],
-    openNoteId: number | null,
+    openNoteId: string | null,
 
     foldersList: FolderType[],
-    openFolderId: number | null,
+    openFolderId: string | null,
 
     loadState: 'idle' | 'pending' | 'success' | 'failed',
     error: string | null,
