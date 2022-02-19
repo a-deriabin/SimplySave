@@ -1,5 +1,5 @@
 import React from 'react';
-import FolderIcon, {FolderIconNameType} from "./FolderIcon";
+import FolderIcon, {FolderIconNameType} from "../../shared/components/FolderIcon";
 import Stack from "../../shared/components/Stack";
 import styles from './styles.module.scss'
 import Box from "../../shared/components/Box";

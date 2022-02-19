@@ -10,7 +10,7 @@ type AddDialogProps = {
 function AddDialog(props: AddDialogProps) {
     return (
         <Dialog isVisible={props.isVisible} onClose={props.onClose} style={{
-            width: '250px',
+            minWidth: '250px',
         }}>
             <SelectTypeScreen onSelected={props.onClose} />
         </Dialog>

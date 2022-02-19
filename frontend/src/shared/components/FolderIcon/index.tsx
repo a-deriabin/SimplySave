@@ -9,7 +9,7 @@ import {
     IoHomeOutline, IoHomeSharp,
     IoStarOutline, IoStarSharp,
 } from 'react-icons/io5'
-import styles from './styles.module.scss'
+import styles from '../../../NotesListView/SidePanel/styles.module.scss'
 import {IconType} from "react-icons";
 
 export type FolderIconNameType = 'add' | 'settings' | 'check' | 'cloud' |
@@ -46,38 +46,8 @@ function getIcon(props: FolderIconProps): IconType {
 }
 
 function FolderIcon(props: FolderIconProps) {
-    // const className = styles.folderIcon
     const Icon = getIcon(props)
     return <Icon className={styles.folderIcon}/>
-
-    // return <FolderIconWithoutStyle
-    //         name={props.name}
-    //         isSelected={props.isSelected}
-    //
-    //     />
-
-    // switch (props.name) {
-    //     case 'add':
-    //         return props.isSelected ?
-    //             <IoAddCircleSharp className={className} /> :
-    //             <IoAddCircleOutline className={className}/>
-    //     case 'settings':
-    //         return <IoSettingsOutline className={className}/>
-    //     case 'check':
-    //         return <IoCheckmarkSharp className={className}/>
-    //     case 'cloud':
-    //         return <IoCloudyOutline className={className}/>
-    //     case 'code':
-    //         return <IoCode className={className}/>
-    //     case 'cube':
-    //         return <IoCubeOutline className={className}/>
-    //     case 'home':
-    //         return <IoHomeOutline className={className}/>
-    //     case 'star':
-    //         return <IoStarOutline className={className}/>
-    //     default:
-    //         throw new Error(`Unknown icon ${props.name}`)
-    // }
 }
 
 export default FolderIcon;
