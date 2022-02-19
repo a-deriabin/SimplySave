@@ -1,11 +1,10 @@
 import React from 'react';
 
 type PropsType = {
-    isVisible: boolean
 }
 
 function CreateFolderScreen(props: PropsType) {
-    return !props.isVisible ? null : (
+    return (
         <div>todo</div>
     );
 }
