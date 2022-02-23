@@ -11,6 +11,7 @@ const initialState: StateType = {
 
     foldersList: [],
     openFolderId: null,
+    searchStr: '',
 
     loadStatus: 'idle',
     createStatus: 'idle',
@@ -20,6 +21,7 @@ const initialState: StateType = {
 export const notesSelector = (state: RootStateType) => state.notes
 export const notesListSelector = (state: RootStateType) => state.notes.notesList
 export const notesLoadStateSelector = (state: RootStateType) => state.notes.loadStatus
+export const notesSearchStrSelector = (state: RootStateType) => state.notes.searchStr
 
 export const notesSlice = createSlice({
     name: 'notes',
@@ -27,11 +29,14 @@ export const notesSlice = createSlice({
     reducers: {
         selectFolder: (state, action: PayloadAction<string|null>) => {
             state.openFolderId = action.payload
-        }
+        },
+        setSearchStr: (state, action: PayloadAction<string>) => {
+            state.searchStr = action.payload
+        },
     },
     extraReducers(builder) {
         loadNotesReducer(builder)
         createNoteReducer(builder)
     }
 })
-export const { selectFolder } = notesSlice.actions
+export const { selectFolder, setSearchStr } = notesSlice.actions

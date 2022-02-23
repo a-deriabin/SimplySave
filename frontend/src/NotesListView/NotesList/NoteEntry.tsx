@@ -1,6 +1,8 @@
 import React from 'react';
 import Container from "../../shared/components/Container";
 import styles from './styles.module.scss'
+import {useSelector} from "react-redux";
+import {notesSelector} from "../../shared/redux/notes/notesSlice";
 
 type NoteEntryPropsType = {
     id: string,
@@ -8,7 +10,8 @@ type NoteEntryPropsType = {
 }
 
 function NoteEntry(props: NoteEntryPropsType) {
-    const isSelected = props.id === '1'
+    const selNote = useSelector(notesSelector).openNoteId
+    const isSelected = props.id === selNote
 
     return (
         <Container

@@ -2,10 +2,16 @@ import React from 'react';
 import Stack from "../../shared/components/Stack";
 import NoteEntry from "./NoteEntry";
 import {useSelector} from "react-redux";
-import {notesListSelector} from "../../shared/redux/notes/notesSlice";
+import {notesSelector} from "../../shared/redux/notes/notesSlice";
 
 function NotesList() {
-    const notes = useSelector(notesListSelector)
+    const notesData = useSelector(notesSelector)
+    let notes = notesData.openFolderId === null ? notesData.notesList :
+        notesData.notesList.filter(note => note.folderId === notesData.openFolderId)
+
+    if (notesData.searchStr !== '') {
+        notes = notes.filter(note => note.title.includes(notesData.searchStr))
+    }
 
     return (
         <Stack direction='column'>

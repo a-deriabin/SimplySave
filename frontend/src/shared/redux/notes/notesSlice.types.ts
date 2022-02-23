@@ -26,6 +26,8 @@ export type StateType = {
     foldersList: FolderType[],
     openFolderId: string | null,
 
+    searchStr: string,
+
     loadStatus: 'idle' | 'pending' | 'success' | 'failed',
     createStatus: 'idle' | 'pending' | 'success' | 'failed',
     error: string | null,
