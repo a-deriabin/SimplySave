@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#000000"/>
     <title>SimplySave app</title>
     <script type="text/javascript">
-        const data = {
+        let data = {
             notes: [
                 {
                     id: '1',
@@ -45,27 +45,25 @@
 
         // Placeholder API. Real implementation should be provided by wrapper app.
         window._simplysave_create_note = async (createData) => {
-            console.log('creating')
-
             const newId = (+data.notes.reduce((prev, cur) => {
-                return +prev > +cur ? cur : prev
-            }) + 1).toString()
+                return +prev.id > +cur.id ? prev : cur
+            }).id + 1).toString()
 
-            data.notes.push({
+            data.notes = [...data.notes, {
                 id: newId,
                 title: createData.title,
                 folderId: createData.folderId,
                 createdTimestamp: Date.now(),
                 editedTimestamp: Date.now(),
                 isPrivate: createData.isPrivate
-            })
+            }]
 
             // Important: at this point, content is already encrypted if isPrivate === true.
             // Wrapper app or sync server cannot decrypt it!
-            data.notesContent.push({
+            data.notesContent = [...data.notesContent, {
                 id: newId,
                 content: createData.content
-            })
+            }]
 
             return Object.assign({}, data.notes[data.notes.length - 1])
         }
