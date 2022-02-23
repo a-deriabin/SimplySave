@@ -7,6 +7,12 @@ export type NoteType = {
     isPrivate: boolean,
 }
 
+export type CreateNoteType = {
+    title: string,
+    folderId: string,
+    password: string | null,
+}
+
 export type FolderType = {
     id: string,
     title: string,
@@ -20,7 +26,8 @@ export type StateType = {
     foldersList: FolderType[],
     openFolderId: string | null,
 
-    loadState: 'idle' | 'pending' | 'success' | 'failed',
+    loadStatus: 'idle' | 'pending' | 'success' | 'failed',
+    createStatus: 'idle' | 'pending' | 'success' | 'failed',
     error: string | null,
 }
 

@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="theme-color" content="#000000"/>
-    <title>SimplySave frontend</title>
+    <title>SimplySave app</title>
     <script type="text/javascript">
         const data = {
             notes: [
@@ -31,6 +31,11 @@
                     isPrivate: false
                 },
             ],
+            notesContent: [
+                { id: '1', content: 'fadsfasfsdfdasf' },
+                { id: '2', content: 'Hello world!' },
+                { id: '3', content: 'Well well well what we have here...' }
+            ],
             folders: [
                 { id: 'demo', title: 'Demo folder', icon: 'star' },
                 { id: 'demo2', title: 'Something else', icon: 'cloud' },
@@ -39,15 +44,30 @@
         }
 
         // Placeholder API. Real implementation should be provided by wrapper app.
-        window._simplysave_create_note = async (note) => {
-            console.log(`create note: ${note.title}`)
-            Object.assign({}, note, {
-                id: (+data.notes.reduce((prev, cur) => {
-                    return +prev > +cur ? cur : prev
-                }) + 1).toString(),
-                createdTimestamp: 0, //TODO
-                editedTimestamp: 0, //TODO
+        window._simplysave_create_note = async (createData) => {
+            console.log('creating')
+
+            const newId = (+data.notes.reduce((prev, cur) => {
+                return +prev > +cur ? cur : prev
+            }) + 1).toString()
+
+            data.notes.push({
+                id: newId,
+                title: createData.title,
+                folderId: createData.folderId,
+                createdTimestamp: Date.now(),
+                editedTimestamp: Date.now(),
+                isPrivate: createData.isPrivate
             })
+
+            // Important: at this point, content is already encrypted if isPrivate === true.
+            // Wrapper app or sync server cannot decrypt it!
+            data.notesContent.push({
+                id: newId,
+                content: createData.content
+            })
+
+            return Object.assign({}, data.notes[data.notes.length - 1])
         }
         window._simplysave_load = async () => {
             return Object.assign({}, data)

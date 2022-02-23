@@ -6,6 +6,7 @@ import {notesListSelector} from "../../shared/redux/notes/notesSlice";
 
 function NotesList() {
     const notes = useSelector(notesListSelector)
+    console.log(notes)
 
     return (
         <Stack direction='column'>

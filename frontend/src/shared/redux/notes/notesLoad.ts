@@ -9,17 +9,19 @@ export const loadNotes = createAsyncThunk('notes/load', async (data, api) => {
 
 export const loadNotesReducer = (builder: ActionReducerMapBuilder<StateType>) => {
     builder.addCase(loadNotes.pending, (state, action) => {
-        state.loadState = 'pending'
+        state.loadStatus = 'pending'
         state.error = null
     })
     builder.addCase(loadNotes.fulfilled, (state, action) => {
-        state.loadState = 'success'
+        state.loadStatus = 'success'
         state.notesList = action.payload.notes
         state.foldersList = action.payload.folders
         state.error = null
     })
     builder.addCase(loadNotes.rejected, (state, action) => {
-        state.loadState = 'failed'
+        state.loadStatus = 'failed'
         state.error = action.error?.message ?? null
+        if (action.error)
+            console.error(action.error)
     })
 }

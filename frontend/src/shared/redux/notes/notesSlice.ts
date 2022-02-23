@@ -2,6 +2,7 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {StateType} from "./notesSlice.types";
 import {loadNotesReducer} from "./notesLoad";
 import {RootStateType} from "../store";
+import {createNoteReducer} from "./notesCreate";
 
 
 const initialState: StateType = {
@@ -11,13 +12,14 @@ const initialState: StateType = {
     foldersList: [],
     openFolderId: null,
 
-    loadState: 'idle',
+    loadStatus: 'idle',
+    createStatus: 'idle',
     error: null,
 }
 
 export const notesSelector = (state: RootStateType) => state.notes
 export const notesListSelector = (state: RootStateType) => state.notes.notesList
-export const notesLoadStateSelector = (state: RootStateType) => state.notes.loadState
+export const notesLoadStateSelector = (state: RootStateType) => state.notes.loadStatus
 
 export const notesSlice = createSlice({
     name: 'notes',
@@ -29,6 +31,7 @@ export const notesSlice = createSlice({
     },
     extraReducers(builder) {
         loadNotesReducer(builder)
+        createNoteReducer(builder)
     }
 })
 export const { selectFolder } = notesSlice.actions
