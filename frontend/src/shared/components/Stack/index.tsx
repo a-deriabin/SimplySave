@@ -19,7 +19,7 @@ function Stack(props: StackProps) {
     return (
         <div className={className} style={{
             flexDirection: props.direction ?? 'column',
-            justifyContent: props.align,
+            justifyContent: props.justify,
             alignItems: props.align,
             flex: props.flex,
             gap: props.gap,
