@@ -30,6 +30,9 @@ export const notesSlice = createSlice({
         selectFolder: (state, action: PayloadAction<string|null>) => {
             state.openFolderId = action.payload
         },
+        selectNote: (state, action: PayloadAction<string|null>) => {
+            state.openNoteId = action.payload
+        },
         setSearchStr: (state, action: PayloadAction<string>) => {
             state.searchStr = action.payload
         },
@@ -39,4 +42,4 @@ export const notesSlice = createSlice({
         createNoteReducer(builder)
     }
 })
-export const { selectFolder, setSearchStr } = notesSlice.actions
+export const { selectFolder, selectNote, setSearchStr } = notesSlice.actions

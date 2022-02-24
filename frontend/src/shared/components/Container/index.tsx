@@ -9,7 +9,7 @@ type ContainerProps = {
     flex?: number,
     style?: React.CSSProperties,
     className?: string,
-    onClick?: (e: React.MouseEvent) => boolean,
+    onClick?: (e: React.MouseEvent) => void,
 }
 
 function Container(props: ContainerProps) {

@@ -1,5 +1,19 @@
 .noteEntry {
-  height: 50px;
-  border-bottom: 1px solid var(--color-border);
-  padding: 5px;
+    height: 50px;
+    border-bottom: 1px solid var(--color-border);
+    padding: 5px;
+    cursor: pointer;
+    &:hover {
+        background-color: var(--color-highlight-pale);
+        color: var(--color-text);
+    }
+}
+
+.noteEntrySel {
+    @extend .noteEntry;
+    background-color: var(--color-highlight);
+    color: var(--color-text);
+    &:hover {
+        background-color: var(--color-highlight-dark);
+    }
 }
