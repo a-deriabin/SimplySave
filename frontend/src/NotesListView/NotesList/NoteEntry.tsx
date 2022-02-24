@@ -23,7 +23,7 @@ function NoteEntry(props: NoteEntryPropsType) {
     return (
         <Container
             horizontalAlign='start'
-            verticalAlign='start'
+            verticalAlign='center'
             fullWidth className={className}
             onClick={handleSelect}
         >
