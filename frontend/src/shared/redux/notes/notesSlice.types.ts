@@ -10,7 +10,7 @@ export type NoteType = {
 export type CreateNoteType = {
     title: string,
     folderId: string,
-    password: string | null,
+    password: string,
 }
 
 export type FolderType = {
@@ -22,6 +22,7 @@ export type FolderType = {
 export type StateType = {
     notesList: NoteType[],
     openNoteId: string | null,
+    openContent: string | null,
 
     foldersList: FolderType[],
     openFolderId: string | null,
@@ -29,6 +30,7 @@ export type StateType = {
     searchStr: string,
 
     loadStatus: 'idle' | 'pending' | 'success' | 'failed',
+    contentLoadStatus: 'idle' | 'pending' | 'success' | 'failed',
     createStatus: 'idle' | 'pending' | 'success' | 'failed',
     error: string | null,
 }

@@ -70,6 +70,9 @@
         window._simplysave_load = async () => {
             return Object.assign({}, data)
         }
+        window._simplysave_load_content = async (noteId) => {
+            return data.notesContent.find(x => x.id === noteId).content
+        }
     </script>
 </head>
 <body>

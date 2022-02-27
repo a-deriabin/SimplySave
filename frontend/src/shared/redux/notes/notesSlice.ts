@@ -3,17 +3,20 @@ import {StateType} from "./notesSlice.types";
 import {loadNotesReducer} from "./notesLoad";
 import {RootStateType} from "../store";
 import {createNoteReducer} from "./notesCreate";
+import {loadNoteContentReducer} from "./notesLoadContent";
 
 
 const initialState: StateType = {
     notesList: [],
     openNoteId: null,
+    openContent: null, // Still encrypted if note is private!
 
     foldersList: [],
     openFolderId: null,
     searchStr: '',
 
     loadStatus: 'idle',
+    contentLoadStatus: 'idle',
     createStatus: 'idle',
     error: null,
 }
@@ -32,6 +35,11 @@ export const notesSlice = createSlice({
         },
         selectNote: (state, action: PayloadAction<string|null>) => {
             state.openNoteId = action.payload
+            if (state.openNoteId === null) {
+                state.openContent = null
+                state.contentLoadStatus = 'idle'
+                //TODO: stop thunk action if any
+            }
         },
         setSearchStr: (state, action: PayloadAction<string>) => {
             state.searchStr = action.payload
@@ -40,6 +48,7 @@ export const notesSlice = createSlice({
     extraReducers(builder) {
         loadNotesReducer(builder)
         createNoteReducer(builder)
+        loadNoteContentReducer(builder)
     }
 })
 export const { selectFolder, selectNote, setSearchStr } = notesSlice.actions

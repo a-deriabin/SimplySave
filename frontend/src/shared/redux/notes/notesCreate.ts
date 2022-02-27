@@ -1,12 +1,10 @@
 import {ActionReducerMapBuilder, createAsyncThunk} from "@reduxjs/toolkit";
 import {CreateNoteType, NoteType, StateType} from "./notesSlice.types";
-import {ENCRYPTION_SALT, PROTECTED_NOTE_PLAINTEXT_PREFIX} from "./constants";
-import AES from 'crypto-js/aes'
+import {encryptContent} from "../../utils/encryption";
 
 
 export const createNote = createAsyncThunk('notes/create', async (data: CreateNoteType, api) => {
-    const content = data.password === '' ? '' :
-        AES.encrypt(PROTECTED_NOTE_PLAINTEXT_PREFIX, data.password + ENCRYPTION_SALT)
+    const content = data.password === '' ? '' : encryptContent('', data.password)
 
     // @ts-ignore
     const createdNote: NoteType = await window._simplysave_create_note({
@@ -24,7 +22,6 @@ export const createNoteReducer = (builder: ActionReducerMapBuilder<StateType>) =
         state.error = null
     })
     builder.addCase(createNote.fulfilled, (state, action) => {
-        console.log('success')
         state.createStatus = 'success'
         state.notesList = [...state.notesList, action.payload]
         state.error = null

@@ -3,6 +3,7 @@ import Container from "../../shared/components/Container";
 import styles from './styles.module.scss'
 import {useDispatch, useSelector} from "react-redux";
 import {notesSelector, selectNote} from "../../shared/redux/notes/notesSlice";
+import {loadNoteContent} from "../../shared/redux/notes/notesLoadContent";
 
 type NoteEntryPropsType = {
     id: string,
@@ -15,7 +16,13 @@ function NoteEntry(props: NoteEntryPropsType) {
     const isSelected = props.id === selNote
 
     const handleSelect = () => {
-        dispatch(selectNote(props.id))
+        if (!isSelected) {
+            dispatch(loadNoteContent(props.id))
+            //dispatch(selectNote(props.id))
+        }
+        else {
+            dispatch(selectNote(null))
+        }
     }
 
     const className = isSelected ? styles.noteEntrySel : styles.noteEntry;
