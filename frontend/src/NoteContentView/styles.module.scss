@@ -1,0 +1,20 @@
+.screenView {
+    height: 100vh;
+}
+
+.contentView {
+    flex: 1;
+    margin: 10px;
+    overflow-y: scroll;
+}
+
+.editContentView {
+    @extend .contentView;
+    border: none;
+    outline: 0 solid #000000;
+}
+
+.editIcon {
+    height: 18px;
+    margin-right: 10px;
+}
