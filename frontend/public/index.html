@@ -67,6 +67,15 @@
 
             return Object.assign({}, data.notes[data.notes.length - 1])
         }
+        window._simplysave_save_note = async (saveData) => {
+            const index = data.notesContent.findIndex(x => x.id === saveData.id)
+            data.notesContent[index] = {
+                id: saveData.id,
+                content: saveData.content
+            }
+            console.log(data.notesContent[index])
+            return data.notesContent[index]
+        }
         window._simplysave_load = async () => {
             return Object.assign({}, data)
         }

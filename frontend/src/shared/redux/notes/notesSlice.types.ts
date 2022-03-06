@@ -13,11 +13,19 @@ export type CreateNoteType = {
     password: string,
 }
 
+export type SaveNoteType = {
+    id: string,
+    content: string,
+    password: string | null,
+}
+
 export type FolderType = {
     id: string,
     title: string,
     icon: string,
 }
+
+type StateStatusType = 'idle' | 'pending' | 'success' | 'failed'
 
 export type StateType = {
     notesList: NoteType[],
@@ -29,9 +37,10 @@ export type StateType = {
 
     searchStr: string,
 
-    loadStatus: 'idle' | 'pending' | 'success' | 'failed',
-    contentLoadStatus: 'idle' | 'pending' | 'success' | 'failed',
-    createStatus: 'idle' | 'pending' | 'success' | 'failed',
+    loadStatus: StateStatusType,
+    contentLoadStatus: StateStatusType,
+    createStatus: StateStatusType,
+    saveNoteStatus: StateStatusType,
     error: string | null,
 }
 

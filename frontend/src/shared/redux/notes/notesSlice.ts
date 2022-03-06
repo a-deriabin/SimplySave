@@ -4,6 +4,7 @@ import {loadNotesReducer} from "./notesLoad";
 import {RootStateType} from "../store";
 import {createNoteReducer} from "./notesCreate";
 import {loadNoteContentReducer} from "./notesLoadContent";
+import {saveNoteReducer} from "./notesSave";
 
 
 const initialState: StateType = {
@@ -18,6 +19,7 @@ const initialState: StateType = {
     loadStatus: 'idle',
     contentLoadStatus: 'idle',
     createStatus: 'idle',
+    saveNoteStatus: 'idle',
     error: null,
 }
 
@@ -49,6 +51,7 @@ export const notesSlice = createSlice({
         loadNotesReducer(builder)
         createNoteReducer(builder)
         loadNoteContentReducer(builder)
+        saveNoteReducer(builder)
     }
 })
 export const { selectFolder, selectNote, setSearchStr } = notesSlice.actions

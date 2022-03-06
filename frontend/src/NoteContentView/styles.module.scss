@@ -5,13 +5,14 @@
 .contentView {
     flex: 1;
     margin: 10px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .editContentView {
     @extend .contentView;
     border: none;
     outline: 0 solid #000000;
+    resize: none;
 }
 
 .editIcon {

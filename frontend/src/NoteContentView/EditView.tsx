@@ -7,16 +7,24 @@ type PropsType = {
 }
 
 function EditView(props: PropsType) {
-    const viewRef = useRef<HTMLDivElement>(null)
+    const viewRef = useRef<HTMLTextAreaElement>(null)
 
     useEffect(() => {
         viewRef.current && viewRef.current.focus()
     }, [])
 
+    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        props.onChange(e.target.value)
+    }
+
     return (
-        <div ref={viewRef} className={styles.editContentView} contentEditable>
-            {props.content}
-        </div>
+        <textarea
+            ref={viewRef}
+            className={styles.editContentView}
+            contentEditable
+            value={props.content}
+            onChange={handleChange}
+        />
     );
 }
 

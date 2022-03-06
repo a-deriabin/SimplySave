@@ -3,12 +3,13 @@ import Stack from "../shared/components/Stack";
 import HorizontalButton from "../shared/components/HorizontalButton";
 import styles from './styles.module.scss';
 import {BsPencilSquare} from "react-icons/bs";
+import {IoDocumentTextOutline} from "react-icons/io5";
 import DisplayView from "./DisplayView";
 import EditView from "./EditView";
-import {IoDocumentTextOutline, IoSaveOutline, IoSaveSharp, IoThumbsUp} from "react-icons/io5";
 
 type PropsType = {
     content: string,
+    onSave: (newContent: string) => void,
 }
 
 function ViewScreen(props: PropsType) {
@@ -26,7 +27,7 @@ function ViewScreen(props: PropsType) {
 
     const handleSave = () => {
         setIsEditing(false)
-        //TODO
+        props.onSave(editingContent)
     }
 
     return (
