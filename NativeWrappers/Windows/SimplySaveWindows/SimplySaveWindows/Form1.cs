@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -33,6 +34,7 @@ namespace SimplySaveWindows
                 await webView.EnsureCoreWebView2Async(env);
 
                 webView.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
+                webView.CoreWebView2.NewWindowRequested += CoreWebView2_NewWindowRequested;
 
                 string indexFile = Path.Join(Directory.GetCurrentDirectory(), "bundle", "index.html");
                 webView.CoreWebView2.Navigate("file:///" + indexFile);
@@ -46,5 +48,10 @@ namespace SimplySaveWindows
             }
         }
 
+        private void CoreWebView2_NewWindowRequested(object sender, CoreWebView2NewWindowRequestedEventArgs e)
+        {
+            e.Handled = true;
+            Process.Start("explorer", e.Uri);
+        }
     }
 }
