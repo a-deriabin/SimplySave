@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import MobileView from "./MobileView";
 import DesktopView from "./DesktopView";
+import '@fontsource/open-sans';
 import './Styles.scss';
 import {useDispatch, useSelector} from "react-redux";
 import {notesLoadStateSelector} from "../shared/redux/notes/notesSlice";

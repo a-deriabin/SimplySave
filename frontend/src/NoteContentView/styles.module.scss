@@ -8,7 +8,8 @@
     overflow-y: auto;
 
     & p {
-        margin: 5px 0 0 0;
+        margin: 4px 0 0 0;
+        //margin: 0;
     }
     & h1, h2, h3 {
         margin: 0;
@@ -20,6 +21,8 @@
     border: none;
     outline: 0 solid #000000;
     resize: none;
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .editIcon {

@@ -1,36 +1,37 @@
 body {
-  --color-primary: #9D5C0D;
-  --color-highlight: #F8EBB6;
-  --color-highlight-pale: #F4F4F4;
-  --color-highlight-dark: #F2E3A9;
-  --color-bg: #FFFFFF;
-  --color-text: #000000;
-  --color-text-contrast: #FFFFFF;
-  --color-text-contrast-pale: #E0E0E0;
-  --color-border: #E0E0E0;
+    --color-primary: #9D5C0D;
+    --color-highlight: #F8EBB6;
+    --color-highlight-pale: #F4F4F4;
+    --color-highlight-dark: #F2E3A9;
+    --color-bg: #FFFFFF;
+    --color-text: #000000;
+    --color-text-contrast: #FFFFFF;
+    --color-text-contrast-pale: #E0E0E0;
+    --color-border: #E0E0E0;
 
-  margin: 0;
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  user-select: none;
-  font-size: 16px;
+    margin: 0;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    user-select: none;
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 h1 {
-  padding: 0;
-  margin: 0;
+    padding: 0;
+    margin: 0;
 }
 
 h2 {
-  padding: 0;
-  margin: 0;
+    padding: 0;
+    margin: 0;
 }
 
 h3 {
-  padding: 0;
-  margin: 0;
+    padding: 0;
+    margin: 0;
 }
