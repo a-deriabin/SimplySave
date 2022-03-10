@@ -53,7 +53,7 @@ namespace SimplySaveWindows
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.webView);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "SimplySave";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.webView)).EndInit();
             this.ResumeLayout(false);
