@@ -6,6 +6,13 @@
     flex: 1;
     margin: 10px;
     overflow-y: auto;
+
+    & p {
+        margin: 5px 0 0 0;
+    }
+    & h1, h2, h3 {
+        margin: 0;
+    }
 }
 
 .editContentView {

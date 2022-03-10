@@ -21,7 +21,6 @@ function EditView(props: PropsType) {
         <textarea
             ref={viewRef}
             className={styles.editContentView}
-            contentEditable
             value={props.content}
             onChange={handleChange}
         />
