@@ -11,7 +11,7 @@ function DesktopView() {
                 <NotesListView />
             </Container>
             <Container flex={7}>
-                <NoteContentView />
+                <NoteContentView isMobile={false} />
             </Container>
         </Stack>
     );

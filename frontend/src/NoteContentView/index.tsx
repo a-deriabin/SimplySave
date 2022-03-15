@@ -6,7 +6,11 @@ import PasswordInputScreen from "./PasswordInputScreen";
 import ViewScreen from "./ViewScreen";
 import {saveNote} from "../shared/redux/notes/notesSave";
 
-function NoteContentView() {
+type PropsType = {
+    isMobile: boolean,
+}
+
+function NoteContentView(props: PropsType) {
     const dispatch = useDispatch()
     const notesData = useSelector(notesSelector)
     const openNote = notesData.notesList.find(x => x.id === notesData.openNoteId) ?? null
@@ -63,11 +67,15 @@ function NoteContentView() {
     }
 
     if (unlockedContent === null) {
-        return <div>loading...</div>
+        return null; //TODO: loading bar?
     }
 
     return (
-        <ViewScreen content={unlockedContent} onSave={handleSaveNote} />
+        <ViewScreen
+            content={unlockedContent}
+            onSave={handleSaveNote}
+            isMobile={props.isMobile}
+        />
     );
 }
 

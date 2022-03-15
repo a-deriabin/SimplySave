@@ -6,11 +6,13 @@ import './Styles.scss';
 import {useDispatch, useSelector} from "react-redux";
 import {notesLoadStateSelector} from "../shared/redux/notes/notesSlice";
 import {loadNotes} from "../shared/redux/notes/notesLoad";
+import useWindowDimensions from "../shared/hooks/useWindowDimensions";
 
 function App() {
     const notesLoadState = useSelector(notesLoadStateSelector)
     const dispatch = useDispatch()
-    const isMobile = false; //TODO
+    const dimensions = useWindowDimensions()
+    const isMobile = dimensions.width < 600
 
     useEffect(() => {
         if (notesLoadState === 'idle') {

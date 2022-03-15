@@ -6,10 +6,12 @@ import {BsPencilSquare} from "react-icons/bs";
 import {IoDocumentTextOutline} from "react-icons/io5";
 import DisplayView from "./DisplayView";
 import EditView from "./EditView";
+import MobileTitleBar from "./MobileTitleBar";
 
 type PropsType = {
     content: string,
     onSave: (newContent: string) => void,
+    isMobile: boolean,
 }
 
 function ViewScreen(props: PropsType) {
@@ -32,6 +34,7 @@ function ViewScreen(props: PropsType) {
 
     return (
         <Stack className={styles.screenView} direction='column'>
+            {props.isMobile && <MobileTitleBar />}
             {!isEditing && (
                 <>
                     <DisplayView content={props.content}/>
