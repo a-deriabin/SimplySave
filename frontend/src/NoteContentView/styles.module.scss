@@ -6,10 +6,10 @@
     flex: 1;
     margin: 10px;
     overflow-y: auto;
+    user-select: text;
 
     & p {
         margin: 4px 0 0 0;
-        //margin: 0;
     }
     & h1, h2, h3 {
         margin: 0;
