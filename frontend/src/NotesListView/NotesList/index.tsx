@@ -3,6 +3,7 @@ import Stack from "../../shared/components/Stack";
 import NoteEntry from "./NoteEntry";
 import {useSelector} from "react-redux";
 import {notesSelector} from "../../shared/redux/notes/notesSlice";
+import Placeholder from "./Placeholder";
 
 function NotesList() {
     const notesData = useSelector(notesSelector)
@@ -16,8 +17,9 @@ function NotesList() {
     return (
         <Stack direction='column'>
             {notes.map(note => (
-                <NoteEntry id={note.id} title={note.title} key={note.id} />
+                <NoteEntry note={note} key={note.id} />
             ))}
+            {notes.length === 0 && <Placeholder />}
         </Stack>
     );
 }
