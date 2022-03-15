@@ -6,4 +6,8 @@
 .searchBar {
   height: 100%;
   width: 100%;
+  outline: none;
+  &:focus {
+    box-shadow: 0 0 6px 3px var(--color-highlight);
+  }
 }
