@@ -10,9 +10,15 @@ export const encryptContent = (content: string, password: string) => {
 export const decryptContent = (content: string, password: string | null) => {
     if (password === null)
         return null;
-    const key = password + ENCRYPTION_SALT
-    const decrypted = AES.decrypt(content, key).toString(utf8)
-    if (!decrypted.startsWith(PROTECTED_NOTE_PLAINTEXT_PREFIX))
-        return null;
-    return decrypted.substring(PROTECTED_NOTE_PLAINTEXT_PREFIX.length)
+    try {
+        const key = password + ENCRYPTION_SALT
+        const decrypted = AES.decrypt(content, key).toString(utf8)
+        if (!decrypted.startsWith(PROTECTED_NOTE_PLAINTEXT_PREFIX))
+            return null;
+        return decrypted.substring(PROTECTED_NOTE_PLAINTEXT_PREFIX.length)
+    }
+    catch (e) {
+        console.error(e)
+        return null
+    }
 }
