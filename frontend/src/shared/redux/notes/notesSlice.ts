@@ -51,7 +51,13 @@ export const notesSlice = createSlice({
         },
         setIsEditingNote: (state, action: PayloadAction<boolean>) => {
             state.isEditingNote = action.payload
-        }
+        },
+        swapFolders: (state, action: PayloadAction<[number, number]>) => {
+            const [a, b] = action.payload
+            const tmp = state.foldersList[a]
+            state.foldersList[a] = state.foldersList[b]
+            state.foldersList[b] = tmp
+        },
     },
     extraReducers(builder) {
         loadNotesReducer(builder)
@@ -60,4 +66,4 @@ export const notesSlice = createSlice({
         saveNoteReducer(builder)
     }
 })
-export const { selectFolder, selectNote, setSearchStr, setIsEditingNote } = notesSlice.actions
+export const { selectFolder, selectNote, setSearchStr, setIsEditingNote, swapFolders } = notesSlice.actions

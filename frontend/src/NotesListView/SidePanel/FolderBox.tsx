@@ -4,16 +4,23 @@ import Stack from "../../shared/components/Stack";
 import styles from './styles.module.scss'
 import Box from "../../shared/components/Box";
 
+export type DivMouseEvent = React.MouseEvent<HTMLDivElement>
+
 type FolderBoxProps = {
     icon: FolderIconNameType,
     title: string,
     isSelected?: boolean,
     onClick?: () => void,
+    onMouseDown?: (title: string, e: DivMouseEvent) => void,
 }
 
 function FolderBox(props: FolderBoxProps) {
+    const onMouseDown = (e: DivMouseEvent) => {
+        props.onMouseDown && props.onMouseDown(props.title, e)
+    }
+
     return (
-        <Box styles={{width: '100%'}}>
+        <Box style={{width: '100%'}} onMouseDown={onMouseDown}>
             <Stack
                 direction='column'
                 align='center'

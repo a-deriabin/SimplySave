@@ -1,15 +1,15 @@
-import React from 'react';
+import React, {DetailedHTMLProps, HTMLAttributes} from 'react';
 
 type BoxProps = {
     children: React.ReactNode,
-    className?: string,
-    styles?: React.CSSProperties,
-}
+} & DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 
 function Box(props: BoxProps) {
+    const { children, ...otherProps } = props
+
     return (
-        <div className={props.className} style={props.styles}>
-            {props.children}
+        <div {...otherProps}>
+            {children}
         </div>
     );
 }
