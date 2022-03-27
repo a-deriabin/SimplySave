@@ -32,6 +32,7 @@ export const saveNoteReducer = (builder: ActionReducerMapBuilder<StateType>) => 
     builder.addCase(saveNote.fulfilled, (state, action) => {
         state.saveNoteStatus = 'success'
         state.openContent = action.payload
+        state.isEditingNote = false
         state.error = null
     })
     builder.addCase(saveNote.rejected, (state, action) => {

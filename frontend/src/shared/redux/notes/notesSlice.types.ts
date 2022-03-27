@@ -31,6 +31,7 @@ export type StateType = {
     notesList: NoteType[],
     openNoteId: string | null,
     openContent: string | null,
+    isEditingNote: boolean,
 
     foldersList: FolderType[],
     openFolderId: string | null,

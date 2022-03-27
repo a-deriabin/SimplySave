@@ -19,6 +19,7 @@ export const loadNoteContentReducer = (builder: ActionReducerMapBuilder<StateTyp
         state.contentLoadStatus = 'success'
         state.openNoteId = action.payload.noteId
         state.openContent = action.payload.content
+        state.isEditingNote = false
         state.error = null
     })
     builder.addCase(loadNoteContent.rejected, (state, action) => {

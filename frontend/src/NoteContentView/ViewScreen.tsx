@@ -7,6 +7,8 @@ import {IoDocumentTextOutline} from "react-icons/io5";
 import DisplayView from "./DisplayView";
 import EditView from "./EditView";
 import MobileTitleBar from "./MobileTitleBar";
+import {notesIsEditingSelector, setIsEditingNote} from "../shared/redux/notes/notesSlice";
+import {useDispatch, useSelector} from "react-redux";
 
 type PropsType = {
     content: string,
@@ -16,11 +18,12 @@ type PropsType = {
 
 function ViewScreen(props: PropsType) {
     const [editingContent, setEditingContent] = useState<string>('')
-    const [isEditing, setIsEditing] = useState(false)
+    const isEditing = useSelector(notesIsEditingSelector)
+    const dispatch = useDispatch()
 
     const handleEdit = () => {
-        setIsEditing(true)
         setEditingContent(props.content)
+        dispatch(setIsEditingNote(true))
     }
 
     const onContentChange = (newContent: string) => {
@@ -28,8 +31,8 @@ function ViewScreen(props: PropsType) {
     }
 
     const handleSave = () => {
-        setIsEditing(false)
         props.onSave(editingContent)
+        dispatch(setIsEditingNote(false))
     }
 
     return (
