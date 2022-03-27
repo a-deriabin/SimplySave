@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import FormInput from "../../../../../shared/components/FormInput";
 import HorizontalButton from "../../../../../shared/components/HorizontalButton";
 import Stack from "../../../../../shared/components/Stack";
+import Span from "../../../../../shared/components/Span";
 
 type PropsType = {
     onSubmit: (title: string) => void,
@@ -24,11 +25,13 @@ function EnterTitleScreen(props: PropsType) {
             <h2>Enter title</h2>
             <FormInput
                 type='text'
-                placeholder='Note title *'
+                placeholder='Note title'
                 value={title}
                 onChange={handleChange}
             />
-            <HorizontalButton onClick={handleSubmit}>Continue</HorizontalButton>
+            <HorizontalButton onClick={handleSubmit}>
+                { title === '' ? <Span type='error'>Continue</Span> : 'Continue' }
+            </HorizontalButton>
         </Stack>
     );
 }

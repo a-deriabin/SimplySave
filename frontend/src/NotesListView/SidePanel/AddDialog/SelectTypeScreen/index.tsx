@@ -3,7 +3,7 @@ import Stack from "../../../../shared/components/Stack";
 import CreateNoteScreen from "./CreateNoteScreen";
 import CustomButton from "./CustomButton";
 import {IoDocumentTextSharp, IoFolderOpenSharp} from "react-icons/io5";
-import CreateFolderScreen from "../CreateFolderScreen";
+import CreateFolderScreen from "./CreateFolderScreen";
 
 
 type PropsType = {

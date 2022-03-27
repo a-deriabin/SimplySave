@@ -6,3 +6,13 @@
 .radioContainer label {
     font-size: 1.3em;
 }
+
+.dialog {
+    min-width: 250px;
+
+    & h2 {
+        padding: 3px;
+    }
+}
+
+

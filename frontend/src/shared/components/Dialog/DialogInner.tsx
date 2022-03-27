@@ -1,7 +1,7 @@
 import React from 'react';
 import {DialogProps} from "./index";
 import Container from "../Container";
-import styles from './styles.module.css'
+import styles from './styles.module.scss'
 
 
 function DialogInner(props: DialogProps) {

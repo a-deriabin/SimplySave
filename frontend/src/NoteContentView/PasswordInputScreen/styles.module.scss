@@ -11,7 +11,7 @@
 }
 
 .error {
-    color: darkred;
+    color: var(--color-text-error);
 
     &:before {
         content: '\200D';
