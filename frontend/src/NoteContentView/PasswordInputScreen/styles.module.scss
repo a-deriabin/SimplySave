@@ -1,6 +1,6 @@
 .screen {
     height: 100vh;
-    padding: 10px;
+    padding: 0 10px;
 }
 
 .form {
@@ -12,9 +12,4 @@
 
 .error {
     color: var(--color-text-error);
-
-    &:before {
-        content: '\200D';
-        display: inline;
-    }
 }

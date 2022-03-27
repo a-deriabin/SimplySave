@@ -63,7 +63,12 @@ function NoteContentView(props: PropsType) {
     }
 
     if (openNote.isPrivate && password === null) {
-        return <PasswordInputScreen onSubmit={handleNewPassword} />
+        return (
+            <PasswordInputScreen
+                onSubmit={handleNewPassword}
+                isMobile={props.isMobile}
+            />
+        )
     }
 
     if (unlockedContent === null) {
