@@ -2,11 +2,12 @@
     height: 100vh;
 }
 
-.contentView {
+.displayView {
     flex: 1;
     margin: 10px;
     overflow-y: auto;
     user-select: text;
+    line-height: 18px;
 
     & p {
         margin: 4px 0 0 0;
@@ -17,7 +18,7 @@
 }
 
 .editContentView {
-    @extend .contentView;
+    @extend .displayView;
     border: none;
     outline: 0 solid #000000;
     resize: none;
