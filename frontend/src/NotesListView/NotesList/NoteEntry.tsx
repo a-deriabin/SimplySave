@@ -9,6 +9,7 @@ import {NoteType} from "../../shared/redux/notes/notesSlice.types";
 
 type NoteEntryPropsType = {
     note: NoteType,
+    isMobile: boolean,
 }
 
 function NoteEntry(props: NoteEntryPropsType) {
@@ -19,7 +20,6 @@ function NoteEntry(props: NoteEntryPropsType) {
     const handleSelect = () => {
         if (!isSelected) {
             dispatch(loadNoteContent(props.note.id))
-            //dispatch(selectNote(props.id))
         }
         else {
             dispatch(selectNote(null))
@@ -27,8 +27,14 @@ function NoteEntry(props: NoteEntryPropsType) {
     }
 
     const className = isSelected ? styles.noteEntrySel : styles.noteEntry
-    const editDate = new Date(props.note.editedTimestamp).toISOString().split('T')
-    const editDateStr = `${editDate[0]} ${editDate[1].split('.')[0]}`
+    const dateClass = props.isMobile ? styles.noteDateTimeMobile : styles.noteDateTimeDesktop
+
+    const editDateTime = new Date(props.note.editedTimestamp).toISOString().split('T')
+    const nowDate = new Date().toISOString().split('T')[0]
+
+    const justDate = editDateTime[0]
+    const justTime = editDateTime[1].split('.')[0]
+    const dateOrTime = justDate === nowDate ? justTime : justDate
 
     return (
         <Container
@@ -39,7 +45,10 @@ function NoteEntry(props: NoteEntryPropsType) {
         >
             <Stack direction='row' align='center' justify='space-between'>
                 <span>{props.note.title}</span>
-                <span className={styles.noteDate}>{editDateStr}</span>
+                <span className={dateClass}>
+                    <span>{justDate} {justTime}</span>
+                    <span>{dateOrTime}</span>
+                </span>
             </Stack>
         </Container>
     );

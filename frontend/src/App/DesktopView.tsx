@@ -8,7 +8,7 @@ function DesktopView() {
     return (
         <Stack direction='row'>
             <Container flex={5}>
-                <NotesListView />
+                <NotesListView isMobile={false} />
             </Container>
             <Container flex={7}>
                 <NoteContentView isMobile={false} />

@@ -18,8 +18,47 @@
     }
 }
 
-.noteDate {
+.noteDateTime {
     color: var(--color-text-pale);
+    font-size: 0.7rem;
+}
+
+.noteDateTimeMobile {
+    @extend .noteDateTime;
+
+    & > span:nth-child(1) {
+        display: inline;
+        @media screen and (max-width: 300px) {
+            display: none;
+        }
+    }
+    & > span:nth-child(2) {
+        display: none;
+        @media (max-width: 300px) {
+            display: inline;
+        }
+    }
+}
+
+.noteDateTimeDesktop {
+    @extend .noteDateTime;
+
+    @media screen and (max-width: 800px) {
+        display: none;
+    }
+
+    & > span:nth-child(1) {
+        display: inline;
+        @media screen and (max-width: 1000px) {
+            display: none;
+        }
+    }
+    & > span:nth-child(2) {
+        display: none;
+        @media (max-width: 1000px) {
+            display: inline;
+        }
+    }
 }
 
 .placeholder {

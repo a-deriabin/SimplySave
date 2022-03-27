@@ -5,7 +5,11 @@ import {useSelector} from "react-redux";
 import {notesSelector} from "../../shared/redux/notes/notesSlice";
 import Placeholder from "./Placeholder";
 
-function NotesList() {
+type PropsType = {
+    isMobile: boolean,
+}
+
+function NotesList(props: PropsType) {
     const notesData = useSelector(notesSelector)
     let notes = notesData.openFolderId === null ? notesData.notesList :
         notesData.notesList.filter(note => note.folderId === notesData.openFolderId)
@@ -17,7 +21,7 @@ function NotesList() {
     return (
         <Stack direction='column'>
             {notes.map(note => (
-                <NoteEntry note={note} key={note.id} />
+                <NoteEntry note={note} key={note.id} isMobile={props.isMobile} />
             ))}
             {notes.length === 0 && <Placeholder />}
         </Stack>

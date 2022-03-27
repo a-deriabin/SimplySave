@@ -9,7 +9,7 @@ function MobileView() {
     const noteSelected = notesState.openNoteId === null
 
     return (
-        noteSelected ? <NotesListView /> : <NoteContentView isMobile={true} />
+        noteSelected ? <NotesListView isMobile={true} /> : <NoteContentView isMobile={true} />
     );
 }
 
