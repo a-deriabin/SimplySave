@@ -11,21 +11,21 @@
                 {
                     id: '1',
                     title: 'Test note',
-                    folderId: 'demo',
+                    folderId: '1',
                     createdTimestamp: new Date().getTime(),
                     editedTimestamp: new Date().getTime(),
                     isPrivate: false
                 },
                 {
                     id: '2', title: 'Very nice note',
-                    folderId: 'demo',
+                    folderId: '1',
                     createdTimestamp: new Date().getTime(),
                     editedTimestamp: new Date().getTime(),
                     isPrivate: false
                 },
                 {
                     id: '3', title: 'Something else!',
-                    folderId: 'demo',
+                    folderId: '1',
                     createdTimestamp: new Date().getTime(),
                     editedTimestamp: new Date().getTime(),
                     isPrivate: false
@@ -37,9 +37,9 @@
                 { id: '3', content: 'Well well well what we have here...' }
             ],
             folders: [
-                { id: 'demo', title: 'Demo folder', icon: 'star' },
-                { id: 'demo2', title: 'Something else', icon: 'cloud' },
-                { id: 'demo3', title: 'Whatever', icon: 'cube' },
+                { id: '1', title: 'Demo folder', icon: 'star' },
+                { id: '2', title: 'Something else', icon: 'cloud' },
+                { id: '3', title: 'Whatever', icon: 'cube' },
             ]
         }
 
@@ -81,6 +81,10 @@
         }
         window._simplysave_load_content = async (noteId) => {
             return data.notesContent.find(x => x.id === noteId).content
+        }
+        window._simplysave_set_folders = async (folders_list) => {
+            data.folders = [...folders_list]
+            console.log(data.folders)
         }
     </script>
 </head>

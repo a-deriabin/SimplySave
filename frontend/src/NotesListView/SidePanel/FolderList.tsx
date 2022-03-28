@@ -3,8 +3,9 @@ import FolderBox, {DivMouseEvent} from "./FolderBox";
 import Container from "../../shared/components/Container";
 import Stack from "../../shared/components/Stack";
 import {useDispatch, useSelector} from "react-redux";
-import {notesSelector, selectFolder, swapFolders} from "../../shared/redux/notes/notesSlice";
+import {notesSelector, selectFolder} from "../../shared/redux/notes/notesSlice";
 import SelectableFolder from "./SelectableFolder";
+import {swapFolders} from "../../shared/redux/notes/foldersSwap";
 
 function FolderList() {
     const dispatch = useDispatch()

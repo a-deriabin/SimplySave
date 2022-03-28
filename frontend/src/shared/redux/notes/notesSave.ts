@@ -1,5 +1,5 @@
 import {ActionReducerMapBuilder, createAsyncThunk} from "@reduxjs/toolkit";
-import {SaveNoteType, StateType} from "./notesSlice.types";
+import {SaveNoteType, NotesStateType} from "./notesSlice.types";
 import {RootStateType} from "../store";
 import {decryptContent, encryptContent} from "../../utils/encryption";
 
@@ -24,7 +24,7 @@ export const saveNote = createAsyncThunk('notes/save', async (data: SaveNoteType
     return encryptedContent
 })
 
-export const saveNoteReducer = (builder: ActionReducerMapBuilder<StateType>) => {
+export const saveNoteReducer = (builder: ActionReducerMapBuilder<NotesStateType>) => {
     builder.addCase(saveNote.pending, (state, action) => {
         state.saveNoteStatus = 'pending'
         state.error = null

@@ -1,13 +1,14 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {StateType} from "./notesSlice.types";
+import {NotesStateType} from "./notesSlice.types";
 import {loadNotesReducer} from "./notesLoad";
 import {RootStateType} from "../store";
 import {createNoteReducer} from "./notesCreate";
 import {loadNoteContentReducer} from "./notesLoadContent";
 import {saveNoteReducer} from "./notesSave";
+import {foldersSwapReducer} from "./foldersSwap";
 
 
-const initialState: StateType = {
+const initialState: NotesStateType = {
     notesList: [],
     openNoteId: null,
     openContent: null, // Still encrypted if note is private!
@@ -52,18 +53,13 @@ export const notesSlice = createSlice({
         setIsEditingNote: (state, action: PayloadAction<boolean>) => {
             state.isEditingNote = action.payload
         },
-        swapFolders: (state, action: PayloadAction<[number, number]>) => {
-            const [a, b] = action.payload
-            const tmp = state.foldersList[a]
-            state.foldersList[a] = state.foldersList[b]
-            state.foldersList[b] = tmp
-        },
     },
     extraReducers(builder) {
         loadNotesReducer(builder)
         createNoteReducer(builder)
         loadNoteContentReducer(builder)
         saveNoteReducer(builder)
+        foldersSwapReducer(builder)
     }
 })
-export const { selectFolder, selectNote, setSearchStr, setIsEditingNote, swapFolders } = notesSlice.actions
+export const { selectFolder, selectNote, setSearchStr, setIsEditingNote } = notesSlice.actions

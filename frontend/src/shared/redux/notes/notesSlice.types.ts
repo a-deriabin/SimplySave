@@ -27,7 +27,7 @@ export type FolderType = {
 
 type StateStatusType = 'idle' | 'pending' | 'success' | 'failed'
 
-export type StateType = {
+export type NotesStateType = {
     notesList: NoteType[],
     openNoteId: string | null,
     openContent: string | null,

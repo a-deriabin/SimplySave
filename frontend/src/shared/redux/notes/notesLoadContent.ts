@@ -1,5 +1,5 @@
 import {ActionReducerMapBuilder, createAsyncThunk} from "@reduxjs/toolkit";
-import {StateType} from "./notesSlice.types";
+import {NotesStateType} from "./notesSlice.types";
 
 export const loadNoteContent = createAsyncThunk('notes/loadContent', async (noteId: string, api) => {
     // @ts-ignore
@@ -10,7 +10,7 @@ export const loadNoteContent = createAsyncThunk('notes/loadContent', async (note
     }
 })
 
-export const loadNoteContentReducer = (builder: ActionReducerMapBuilder<StateType>) => {
+export const loadNoteContentReducer = (builder: ActionReducerMapBuilder<NotesStateType>) => {
     builder.addCase(loadNoteContent.pending, (state, action) => {
         state.contentLoadStatus = 'pending'
         state.error = null
