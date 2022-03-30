@@ -1,7 +1,7 @@
 import React from 'react';
 import Dialog from "../../../shared/components/Dialog";
-import SelectTypeScreen from "./SelectTypeScreen";
 import styles from './styles.module.scss';
+import SelectTypeScreen from "./SelectTypeScreen";
 
 type AddDialogProps = {
     isVisible: boolean,

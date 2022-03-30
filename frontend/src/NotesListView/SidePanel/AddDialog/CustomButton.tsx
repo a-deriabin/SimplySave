@@ -1,6 +1,6 @@
 import React from 'react';
-import Stack from "../../../../shared/components/Stack";
-import Container from "../../../../shared/components/Container";
+import Stack from "../../../shared/components/Stack";
+import Container from "../../../shared/components/Container";
 import styles from './styles.module.scss';
 import {IconType} from "react-icons";
 

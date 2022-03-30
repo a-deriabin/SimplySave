@@ -14,6 +14,13 @@ import {IconType} from "react-icons";
 
 export type FolderIconNameType = 'add' | 'settings' | 'check' | 'cloud' |
     'code' | 'cube' | 'home' | 'star' | string
+export const UserFolderIcons = [
+    { id: 'check', title: 'Checkmark' },
+    { id: 'cloud', title: 'Cloud' },
+    { id: 'code', title: 'Code' },
+    { id: 'cube', title: 'Cube' },
+    { id: 'star', title: 'Star' }
+]
 
 type FolderIconProps = {
     name: FolderIconNameType,

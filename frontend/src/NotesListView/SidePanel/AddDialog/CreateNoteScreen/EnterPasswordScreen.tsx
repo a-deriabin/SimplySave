@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import Stack from "../../../../../shared/components/Stack";
-import FormInput from "../../../../../shared/components/FormInput";
-import HorizontalButton from "../../../../../shared/components/HorizontalButton";
+import Stack from "../../../../shared/components/Stack";
+import FormInput from "../../../../shared/components/FormInput";
+import HorizontalButton from "../../../../shared/components/HorizontalButton";
 
 type PropsType = {
     onSubmit: (pass: string) => void,

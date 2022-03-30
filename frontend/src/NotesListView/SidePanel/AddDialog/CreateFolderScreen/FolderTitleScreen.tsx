@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
-import FormInput from "../../../../../shared/components/FormInput";
-import HorizontalButton from "../../../../../shared/components/HorizontalButton";
-import Stack from "../../../../../shared/components/Stack";
-import Span from "../../../../../shared/components/Span";
+import FormInput from "../../../../shared/components/FormInput";
+import HorizontalButton from "../../../../shared/components/HorizontalButton";
+import Stack from "../../../../shared/components/Stack";
+import Span from "../../../../shared/components/Span";
 
 type PropsType = {
     onSubmit: (title: string) => void,
 }
 
-function EnterTitleScreen(props: PropsType) {
+function FolderTitleScreen(props: PropsType) {
     const [title, setTitle] = useState<string>('')
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,7 +25,7 @@ function EnterTitleScreen(props: PropsType) {
             <h2>Enter title</h2>
             <FormInput
                 type='text'
-                placeholder='Note title'
+                placeholder='Folder title'
                 value={title}
                 onChange={handleChange}
             />
@@ -36,4 +36,4 @@ function EnterTitleScreen(props: PropsType) {
     );
 }
 
-export default EnterTitleScreen;
+export default FolderTitleScreen;

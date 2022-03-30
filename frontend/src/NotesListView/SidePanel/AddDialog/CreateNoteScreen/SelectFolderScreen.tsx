@@ -1,10 +1,10 @@
 import React from 'react';
-import Stack from "../../../../../shared/components/Stack";
+import Stack from "../../../../shared/components/Stack";
 import {useSelector} from "react-redux";
-import {notesSelector} from "../../../../../shared/redux/notes/notesSlice";
-import HorizontalButton from "../../../../../shared/components/HorizontalButton";
-import FolderIcon from "../../../../../shared/components/FolderIcon";
-import Container from "../../../../../shared/components/Container";
+import {notesSelector} from "../../../../shared/redux/notes/notesSlice";
+import HorizontalButton from "../../../../shared/components/HorizontalButton";
+import FolderIcon from "../../../../shared/components/FolderIcon";
+import Container from "../../../../shared/components/Container";
 
 type PropsType = {
     onSubmit: (folderId: string) => void,

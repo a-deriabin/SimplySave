@@ -5,7 +5,9 @@ import {RootStateType} from "../store";
 import {createNoteReducer} from "./notesCreate";
 import {loadNoteContentReducer} from "./notesLoadContent";
 import {saveNoteReducer} from "./notesSave";
-import {foldersSwapReducer} from "./foldersSwap";
+import {swapFolders} from "./foldersSwap";
+import {folderUpdateReducer} from "./folderUpdateReducer";
+import {createFolder} from "./folderCreate";
 
 
 const initialState: NotesStateType = {
@@ -59,7 +61,8 @@ export const notesSlice = createSlice({
         createNoteReducer(builder)
         loadNoteContentReducer(builder)
         saveNoteReducer(builder)
-        foldersSwapReducer(builder)
+        folderUpdateReducer(builder, swapFolders)
+        folderUpdateReducer(builder, createFolder)
     }
 })
 export const { selectFolder, selectNote, setSearchStr, setIsEditingNote } = notesSlice.actions

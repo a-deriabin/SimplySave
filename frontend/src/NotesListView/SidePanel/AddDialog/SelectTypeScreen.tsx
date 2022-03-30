@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Stack from "../../../../shared/components/Stack";
+import Stack from "../../../shared/components/Stack";
 import CreateNoteScreen from "./CreateNoteScreen";
 import CustomButton from "./CustomButton";
 import {IoDocumentTextSharp, IoFolderOpenSharp} from "react-icons/io5";
@@ -19,7 +19,7 @@ function SelectTypeScreen(props: PropsType) {
         return <CreateNoteScreen onFinish={props.onFinish} />
     }
     if (choice === 'folder') {
-        return <CreateFolderScreen />
+        return <CreateFolderScreen onFinish={props.onFinish} />
     }
 
     return (

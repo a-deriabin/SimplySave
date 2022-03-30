@@ -1,5 +1,4 @@
-import {ActionReducerMapBuilder, createAsyncThunk} from "@reduxjs/toolkit";
-import {NotesStateType} from "./notesSlice.types";
+import { createAsyncThunk} from "@reduxjs/toolkit";
 import {RootStateType} from "../store";
 
 export const swapFolders = createAsyncThunk('notes/foldersSwap', async ([idx1, idx2]: [number, number], api) => {
@@ -16,18 +15,3 @@ export const swapFolders = createAsyncThunk('notes/foldersSwap', async ([idx1, i
 
     return newFolders
 })
-
-export const foldersSwapReducer = (builder: ActionReducerMapBuilder<NotesStateType>) => {
-    builder.addCase(swapFolders.pending, (state, action) => {
-        state.error = null
-    })
-    builder.addCase(swapFolders.fulfilled, (state, action) => {
-        state.foldersList = action.payload
-        state.error = null
-    })
-    builder.addCase(swapFolders.rejected, (state, action) => {
-        state.error = action.error?.message ?? null
-        if (action.error)
-            console.error(action.error)
-    })
-}

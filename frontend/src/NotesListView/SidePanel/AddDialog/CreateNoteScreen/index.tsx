@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import EnterTitleScreen from "./EnterTitleScreen";
 import EnterPasswordScreen from "./EnterPasswordScreen";
 import {useDispatch} from "react-redux";
-import {createNote} from "../../../../../shared/redux/notes/notesCreate";
+import {createNote} from "../../../../shared/redux/notes/notesCreate";
 import SelectFolderScreen from "./SelectFolderScreen";
 
 type PropsType = {
