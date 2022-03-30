@@ -6,6 +6,17 @@
     font-size: 12px;
 }
 
+.folderListInner {
+    overflow-x: hidden;
+    overflow-y: fragments;
+
+    /* Native wrappers are expected to use either Webkit or Gecko so it's fine. */
+    scrollbar-width: thin; /* Firefox */
+    &::-webkit-scrollbar {
+        width: 2px;
+    }
+}
+
 .folderBox {
     cursor: pointer;
     padding-top: 10px;

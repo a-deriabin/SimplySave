@@ -13,7 +13,7 @@ function FolderIconScreen(props: PropsType) {
 
     return (
         <Stack direction='column'>
-            <h2>Select folder</h2>
+            <h2>Select icon</h2>
             {UserFolderIcons.map(icon => (
                 <HorizontalButton key={icon.id} onClick={handleSelect(icon.id)}>
                     <Stack direction='row' justify='space-between' align='center'>

@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {notesSelector, selectFolder} from "../../shared/redux/notes/notesSlice";
 import SelectableFolder from "./SelectableFolder";
 import {swapFolders} from "../../shared/redux/notes/foldersSwap";
+import styles from './styles.module.scss';
 
 function FolderList() {
     const dispatch = useDispatch()
@@ -71,7 +72,7 @@ function FolderList() {
 
     return (
         <Container flex={1} style={{ overflowY: 'auto' }}>
-            <Stack direction='column'>
+            <Stack direction='column' className={styles.folderListInner}>
                 <FolderBox
                     icon='home'
                     title='All'
