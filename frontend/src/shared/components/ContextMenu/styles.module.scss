@@ -1,0 +1,21 @@
+.contextMenuOuter {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10000;
+    //background-color: rgba(0, 0, 0, 0.5);
+}
+
+.contextMenuInner {
+    position: absolute;
+    background-color: #FFFFFF;
+    min-width: 50px;
+    min-height: 50px;
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    z-index: 10100;
+    padding: 5px;
+}
+
