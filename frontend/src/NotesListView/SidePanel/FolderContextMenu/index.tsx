@@ -4,7 +4,7 @@ import HorizontalButton from "../../../shared/components/HorizontalButton";
 import Container from "../../../shared/components/Container";
 import Stack from "../../../shared/components/Stack";
 import {IoPencil, IoArrowRedo, IoTrash} from "react-icons/io5";
-import styles from './styles.module.scss';
+import ContextMenuButton from "../../../shared/components/ContextMenuButton";
 
 type PropsType = {
     targetFolderId: string|null,
@@ -21,32 +21,40 @@ function FolderContextMenu(props: PropsType) {
 
     return (
         <ContextMenu isOpen={props.isOpen} position={props.position} onClose={props.onClose}>
-            <HorizontalButton font='small' onClick={handleRename}>
-                <Stack direction='row' justify='space-between' align='center'>
-                    <IoPencil className={styles.icon} />
-                    <Container horizontalAlign='start'>
-                        Rename
-                    </Container>
-                </Stack>
-            </HorizontalButton>
-            <HorizontalButton font='small'>
-                <Stack direction='row' justify='space-between' align='center'>
-                    <IoArrowRedo className={styles.icon} />
-                    <Container horizontalAlign='start'>
-                        Move
-                    </Container>
-                </Stack>
-            </HorizontalButton>
-            <HorizontalButton font='small'>
-                <Stack direction='row' justify='space-between' align='center'>
-                    <IoTrash className={styles.icon} />
-                    <Container horizontalAlign='start'>
-                        Delete
-                    </Container>
-                </Stack>
-            </HorizontalButton>
+            <ContextMenuButton text='Rename' icon={IoPencil} onClick={handleRename} />
+            <ContextMenuButton text='Move' icon={IoArrowRedo} />
+            <ContextMenuButton text='Delete' icon={IoTrash} />
         </ContextMenu>
     );
+
+    // return (
+    //     <ContextMenu isOpen={props.isOpen} position={props.position} onClose={props.onClose}>
+    //         <HorizontalButton font='small' onClick={handleRename}>
+    //             <Stack direction='row' justify='space-between' align='center'>
+    //                 <IoPencil className={styles.icon} />
+    //                 <Container horizontalAlign='start'>
+    //                     Rename
+    //                 </Container>
+    //             </Stack>
+    //         </HorizontalButton>
+    //         <HorizontalButton font='small'>
+    //             <Stack direction='row' justify='space-between' align='center'>
+    //                 <IoArrowRedo className={styles.icon} />
+    //                 <Container horizontalAlign='start'>
+    //                     Move
+    //                 </Container>
+    //             </Stack>
+    //         </HorizontalButton>
+    //         <HorizontalButton font='small'>
+    //             <Stack direction='row' justify='space-between' align='center'>
+    //                 <IoTrash className={styles.icon} />
+    //                 <Container horizontalAlign='start'>
+    //                     Delete
+    //                 </Container>
+    //             </Stack>
+    //         </HorizontalButton>
+    //     </ContextMenu>
+    // );
 }
 
 export default FolderContextMenu;
