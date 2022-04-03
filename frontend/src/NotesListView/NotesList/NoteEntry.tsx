@@ -10,6 +10,7 @@ import {NoteType} from "../../shared/redux/notes/notesSlice.types";
 type NoteEntryPropsType = {
     note: NoteType,
     isMobile: boolean,
+    onContextMenu?: (e: React.MouseEvent) => void,
 }
 
 function NoteEntry(props: NoteEntryPropsType) {
@@ -42,6 +43,7 @@ function NoteEntry(props: NoteEntryPropsType) {
             verticalAlign='center'
             fullWidth className={className}
             onClick={handleSelect}
+            onContextMenu={props.onContextMenu}
         >
             <Stack direction='row' align='center' justify='space-between'>
                 <span>{props.note.title}</span>

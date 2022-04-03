@@ -1,27 +1,27 @@
 import React from 'react';
-import ContextMenu, {PositionType} from "../../../shared/components/ContextMenu";
-import {IoPencil, IoTrash} from "react-icons/io5";
-import ContextMenuButton from "../../../shared/components/ContextMenuButton";
+import {IoPencil, IoArrowRedo, IoTrash} from "react-icons/io5";
+import ContextMenuButton from "../../shared/components/ContextMenuButton";
+import ContextMenu, {PositionType} from "../../shared/components/ContextMenu";
 
 type PropsType = {
-    targetFolderId: string|null,
+    targetNoteId: string|null,
     isOpen: boolean,
     onClose: () => void,
     position: PositionType,
 }
 
-function FolderContextMenu(props: PropsType) {
-
+function NoteContextMenu(props: PropsType) {
     const handleRename = () => {
-        console.log('rename ' + props.targetFolderId)
+        console.log('rename ' + props.targetNoteId)
     }
 
     return (
         <ContextMenu isOpen={props.isOpen} position={props.position} onClose={props.onClose}>
             <ContextMenuButton text='Rename' icon={IoPencil} onClick={handleRename} />
+            <ContextMenuButton text='Move' icon={IoArrowRedo} />
             <ContextMenuButton text='Delete' icon={IoTrash} />
         </ContextMenu>
     );
 }
 
-export default FolderContextMenu;
+export default NoteContextMenu;
