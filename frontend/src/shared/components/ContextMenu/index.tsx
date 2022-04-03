@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import ReactDOM from "react-dom";
 import ContextMenuInner, {InnerContextProps, PositionType} from "./ContextMenuInner";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 type ContextMenuProps = {
     targetRef: React.MutableRefObject<HTMLElement|null>,
@@ -30,6 +31,7 @@ function ContextMenu(props: ContextMenuProps) {
     const [isVisible, setIsVisible] = useState(false)
     const [position, setPosition] = useState<PositionType>({x: 0, y: 0})
     const containerRef = useRef<HTMLElement|null>(null)
+    const screenSizes = useWindowDimensions()
 
     useEffect(() => {
         if (props.targetRef.current === null)
@@ -64,6 +66,7 @@ function ContextMenu(props: ContextMenuProps) {
         className: props.className,
         style: props.style,
         children: props.children,
+        screenSizes: screenSizes,
     }
 
     return ReactDOM.createPortal(

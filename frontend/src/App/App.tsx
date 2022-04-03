@@ -14,6 +14,11 @@ function App() {
     const dimensions = useWindowDimensions()
     const isMobile = dimensions.width < 600
 
+    //TODO: uncomment to disable right-click
+    // useEffect(() => {
+    //     document.addEventListener('contextmenu', event => event.preventDefault());
+    // }, [])
+
     useEffect(() => {
         if (notesLoadState === 'idle') {
             dispatch(loadNotes())

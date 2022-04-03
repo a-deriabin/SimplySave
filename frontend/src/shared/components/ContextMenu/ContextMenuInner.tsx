@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from "./styles.module.scss";
-import Container from "../Container";
 
 export type PositionType = {
     x: number,
@@ -12,26 +11,43 @@ export type InnerContextProps = {
     className?: string,
     style?: React.CSSProperties,
     children: React.ReactNode,
+    screenSizes: { width: number, height: number },
 }
 
 function ContextMenuInner(props: InnerContextProps) {
+    const { x, y } = props.position
+    const screenSizes = props.screenSizes
+
     const handleMenuEvent = (event: React.MouseEvent) => {
         event.stopPropagation()
+        event.preventDefault()
         return false
     }
-    const handleBackgroundClick = () => {
+    const handleBackgroundClick = (event: React.MouseEvent) => {
         props.onClose && props.onClose()
+        event.preventDefault()
     }
 
     const innerClass = props.className ? `${styles.contextMenuInner} ${props.className}`
         : styles.contextMenuInner
 
-    const style = {...props.style, top: props.position.y, left: props.position.x}
+    const style = {...props.style}
+
+    if (x < screenSizes.width / 2)
+        style.left = x
+    else
+        style.right = screenSizes.width - x
+
+    if (y < screenSizes.height / 2)
+        style.top = y
+    else
+        style.bottom = screenSizes.height - y
 
     return (
         <div
             className={styles.contextMenuOuter}
             onClick={handleBackgroundClick}
+            onContextMenu={handleBackgroundClick}
             onMouseDown={handleMenuEvent}
             onMouseUp={handleMenuEvent}
             onMouseMove={handleMenuEvent}
@@ -39,6 +55,7 @@ function ContextMenuInner(props: InnerContextProps) {
             <div
                 className={innerClass}
                 onClick={handleMenuEvent}
+                onContextMenu={handleMenuEvent}
                 style={style}
             >
                 {props.children}
