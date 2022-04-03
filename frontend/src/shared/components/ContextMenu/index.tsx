@@ -1,10 +1,17 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef} from 'react';
 import ReactDOM from "react-dom";
-import ContextMenuInner, {InnerContextProps, PositionType} from "./ContextMenuInner";
+import ContextMenuInner, {InnerContextProps} from "./ContextMenuInner";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 
+export type PositionType = {
+    x: number,
+    y: number,
+}
 type ContextMenuProps = {
-    targetRef: React.MutableRefObject<HTMLElement|null>,
+    isOpen: boolean,
+    position: PositionType,
+    onClose: () => void,
+
     className?: string,
     style?: React.CSSProperties,
     children: React.ReactNode,
@@ -28,30 +35,10 @@ function ensureContainerExists(node: HTMLElement | null): HTMLElement {
 }
 
 function ContextMenu(props: ContextMenuProps) {
-    const [isVisible, setIsVisible] = useState(false)
-    const [position, setPosition] = useState<PositionType>({x: 0, y: 0})
     const containerRef = useRef<HTMLElement|null>(null)
     const screenSizes = useWindowDimensions()
 
-    useEffect(() => {
-        if (props.targetRef.current === null)
-            return
-        const listener = (ev: MouseEvent) => {
-            setIsVisible(true)
-            ev.preventDefault()
-            setPosition({
-                x: ev.clientX,
-                y: ev.clientY
-            })
-        }
-        props.targetRef.current.addEventListener('contextmenu', listener)
-
-        return () => {
-            props.targetRef.current?.removeEventListener('contextmenu', listener)
-        }
-    })
-
-    if (!isVisible) {
+    if (!props.isOpen) {
         ensureContainerDestroyed(containerRef.current)
         containerRef.current = null
         return null
@@ -59,10 +46,8 @@ function ContextMenu(props: ContextMenuProps) {
 
     containerRef.current = ensureContainerExists(containerRef.current)
     const innerProps: InnerContextProps = {
-        onClose: () => {
-            setIsVisible(false)
-        },
-        position: position,
+        onClose: props.onClose,
+        position: props.position,
         className: props.className,
         style: props.style,
         children: props.children,

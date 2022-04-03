@@ -1,15 +1,12 @@
 .base {
     width: 100%;
     height: 45px;
-    font-size: 1.2rem;
     padding: 5px;
 
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-
-
 
     &:hover {
         background-color: rgba(0, 0, 0, 0.075);
@@ -26,3 +23,13 @@
     border-radius: 5px;
 }
 
+
+.fontSmall {
+    font-size: 0.9rem;
+}
+.fontMedium {
+    font-size: 1rem;
+}
+.fontLarge {
+    font-size: 1.2rem;
+}

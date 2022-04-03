@@ -8,6 +8,7 @@ type SelectableFolderType = {
     data: FolderType,
     isSelected: boolean,
     onMouseDown?: (title: string, e: DivMouseEvent) => void,
+    onContextMenu?: (e: React.MouseEvent) => void,
 }
 
 function SelectableFolder(props: SelectableFolderType) {
@@ -24,6 +25,7 @@ function SelectableFolder(props: SelectableFolderType) {
             isSelected={props.isSelected}
             onClick={handleSelect}
             onMouseDown={props.onMouseDown}
+            onContextMenu={props.onContextMenu}
         />
     );
 }

@@ -5,10 +5,16 @@ type HorizontalButtonProps = {
     children?: React.ReactNode,
     onClick?: () => void,
     variant?: 'text' | 'outline',
+    font?: 'small' | 'medium' | 'large',
 }
 
 function HorizontalButton(props: HorizontalButtonProps) {
-    const className = props.variant === 'outline' ? styles.border :styles.base;
+    const variantClass = props.variant === 'outline' ? styles.border : styles.base
+
+    const fontClass = props.font === 'small' ? styles.fontSmall :
+        props.font === 'medium' ? styles.fontMedium : styles.fontLarge
+
+    const className = `${variantClass} ${fontClass}`
 
     return (
         <div className={className} onClick={props.onClick}>

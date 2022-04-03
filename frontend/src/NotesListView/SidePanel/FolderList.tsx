@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import FolderBox, {DivMouseEvent} from "./FolderBox";
 import Container from "../../shared/components/Container";
 import Stack from "../../shared/components/Stack";
@@ -7,10 +7,26 @@ import {notesSelector, selectFolder} from "../../shared/redux/notes/notesSlice";
 import SelectableFolder from "./SelectableFolder";
 import {swapFolders} from "../../shared/redux/notes/foldersSwap";
 import styles from './styles.module.scss';
+import FolderContextMenu from "./FolderContextMenu";
+import {PositionType} from "../../shared/components/ContextMenu";
 
 function FolderList() {
     const dispatch = useDispatch()
     const notesData = useSelector(notesSelector)
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const [menuPostion, setMenuPosition] = useState<PositionType>({x: 0, y: 0})
+    const [menuForId, setMenuForId] = useState<string|null>(null)
+
+    const handleMenuClose = () => setIsMenuOpen(false)
+    const handleContextMenuOpen = (id: string) => (e: React.MouseEvent) => {
+        setMenuPosition({
+            x: e.clientX,
+            y: e.clientY
+        })
+        setIsMenuOpen(true)
+        setMenuForId(id)
+        e.preventDefault()
+    }
 
     const handleHomeClick = () => {
         dispatch(selectFolder(null))
@@ -72,6 +88,12 @@ function FolderList() {
 
     return (
         <Container flex={1} style={{ overflowY: 'auto' }}>
+            <FolderContextMenu
+                targetFolderId={menuForId}
+                isOpen={isMenuOpen}
+                onClose={handleMenuClose}
+                position={menuPostion}
+            />
             <Stack direction='column' className={styles.folderListInner}>
                 <FolderBox
                     icon='home'
@@ -84,6 +106,7 @@ function FolderList() {
                         data={folder}
                         isSelected={folder.id === notesData.openFolderId}
                         onMouseDown={handleMouseEvent}
+                        onContextMenu={handleContextMenuOpen(folder.id)}
                         key={folder.id}
                     />
                 ))}

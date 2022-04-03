@@ -1,10 +1,7 @@
 import React from 'react';
 import styles from "./styles.module.scss";
+import {PositionType} from "./index";
 
-export type PositionType = {
-    x: number,
-    y: number,
-}
 export type InnerContextProps = {
     onClose: () => void,
     position: PositionType,

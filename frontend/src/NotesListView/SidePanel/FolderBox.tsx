@@ -1,9 +1,8 @@
-import React, {useCallback, useRef, useState} from 'react';
+import React, {ForwardedRef} from 'react';
 import FolderIcon, {FolderIconNameType} from "../../shared/components/FolderIcon";
 import Stack from "../../shared/components/Stack";
 import styles from './styles.module.scss'
 import Box from "../../shared/components/Box";
-import FolderContextMenu from "./FolderContextMenu";
 
 export type DivMouseEvent = React.MouseEvent<HTMLDivElement>
 
@@ -13,20 +12,21 @@ type FolderBoxProps = {
     isSelected?: boolean,
     onClick?: () => void,
     onMouseDown?: (title: string, e: DivMouseEvent) => void,
+    onContextMenu?: (e: React.MouseEvent) => void,
 }
 
-function FolderBox(props: FolderBoxProps) {
-    const selfRef = useRef<HTMLElement|null>(null)
-    const onRef = (el: HTMLDivElement | null) => {
-        selfRef.current = el
-    }
-
+const FolderBox = React.forwardRef((props: FolderBoxProps, ref: ForwardedRef<HTMLDivElement>) => {
     const onMouseDown = (e: DivMouseEvent) => {
         props.onMouseDown && props.onMouseDown(props.title, e)
     }
 
     return (
-        <Box style={{width: '100%'}} onMouseDown={onMouseDown} ref={onRef}>
+        <Box
+            style={{width: '100%'}}
+            onMouseDown={onMouseDown}
+            ref={ref}
+            onContextMenu={props.onContextMenu}
+        >
             <Stack
                 direction='column'
                 align='center'
@@ -39,11 +39,8 @@ function FolderBox(props: FolderBoxProps) {
                     {props.title}
                 </div>
             </Stack>
-            <FolderContextMenu
-                targetRef={selfRef}
-            />
         </Box>
-    );
-}
+    )
+})
 
-export default FolderBox;
+export default FolderBox
