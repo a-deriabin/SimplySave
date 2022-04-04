@@ -8,6 +8,8 @@ import {notesSelector} from "../../shared/redux/notes/notesSlice";
 import {renameNote} from "../../shared/redux/notes/notesRename";
 import ConfirmDialog from "../../shared/components/ConfirmDialog";
 import {deleteNote} from "../../shared/redux/notes/notesDelete";
+import NoteMoveDialog from "./NoteMoveDialog";
+import {moveNote} from "../../shared/redux/notes/notesMove";
 
 type PropsType = {
     targetNoteId: string | null,
@@ -19,6 +21,7 @@ type PropsType = {
 function NoteContextMenu(props: PropsType) {
     const [isRenaming, setIsRenaming] = useState(false)
     const [showDeleteDialog, setShowDeleteDialog] = useState(false)
+    const [showMoveDialog, setShowMoveDialog] = useState(false)
 
     const dispatch = useDispatch()
     const notesData = useSelector(notesSelector)
@@ -51,6 +54,16 @@ function NoteContextMenu(props: PropsType) {
         dispatch(deleteNote(props.targetNoteId))
     }
 
+    const handleMove = () => {
+        setShowMoveDialog(true)
+        props.onClose()
+    }
+    const handleMoveFinish = (folderId: string|null) => {
+        setShowMoveDialog(false)
+        if (folderId && props.targetNoteId)
+            dispatch(moveNote([props.targetNoteId, folderId]))
+    }
+
     return (
         <>
             <RenameDialog
@@ -65,9 +78,10 @@ function NoteContextMenu(props: PropsType) {
                 message='Are you sure you want to delete this note?'
                 confirmMsg='Delete'
             />
+            <NoteMoveDialog isVisible={showMoveDialog} onClose={handleMoveFinish} />
             <ContextMenu isOpen={props.isOpen} position={props.position} onClose={props.onClose}>
                 <ContextMenuButton text='Rename' icon={IoPencil} onClick={handleRename}/>
-                <ContextMenuButton text='Move' icon={IoArrowRedo} />
+                <ContextMenuButton text='Move' icon={IoArrowRedo} onClick={handleMove} />
                 <ContextMenuButton text='Delete' icon={IoTrash} onClick={handleDelete} />
             </ContextMenu>
         </>

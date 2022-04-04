@@ -6,6 +6,7 @@
     <meta name="theme-color" content="#000000"/>
     <title>SimplySave app</title>
     <script type="text/javascript">
+        // Placeholder data. Real data will be managed by wrapper app.
         let data = {
             notes: [
                 {
@@ -82,6 +83,16 @@
             newNotes[index] = {
                 ...newNotes[index],
                 title: renameData.newTitle,
+            }
+            data.notes = newNotes
+            return Object.assign([], data.notes)
+        }
+        window._simplysave_note_change_folder = async (noteId, folderId) => {
+            const index = data.notes.findIndex(x => x.id === noteId)
+            const newNotes = [...data.notes]
+            newNotes[index] = {
+                ...newNotes[index],
+                folderId: folderId,
             }
             data.notes = newNotes
             return Object.assign([], data.notes)

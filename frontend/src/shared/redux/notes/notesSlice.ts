@@ -13,6 +13,7 @@ import {deleteFolder} from "./folderDelete";
 import {renameNote} from "./notesRename";
 import {notesReloadReducer} from "./notesReloadReducer";
 import {deleteNote} from "./notesDelete";
+import {moveNote} from "./notesMove";
 
 
 const initialState: NotesStateType = {
@@ -68,6 +69,7 @@ export const notesSlice = createSlice({
         saveNoteReducer(builder)
         notesReloadReducer(builder, renameNote)
         notesReloadReducer(builder, deleteNote)
+        notesReloadReducer(builder, moveNote)
         folderUpdateReducer(builder, swapFolders)
         folderUpdateReducer(builder, createFolder)
         folderUpdateReducer(builder, renameFolder)
