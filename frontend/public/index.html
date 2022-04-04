@@ -77,13 +77,17 @@
             return data.notesContent[index]
         }
         window._simplysave_rename_note = async (renameData) => {
-            const index = data.notesContent.findIndex(x => x.id === renameData.id)
+            const index = data.notes.findIndex(x => x.id === renameData.id)
             const newNotes = [...data.notes]
             newNotes[index] = {
                 ...newNotes[index],
                 title: renameData.newTitle,
             }
             data.notes = newNotes
+            return Object.assign([], data.notes)
+        }
+        window._simplysave_delete_note = async (id) => {
+            data.notes = data.notes.filter(x => x.id !== id)
             return Object.assign([], data.notes)
         }
         window._simplysave_load = async () => {
