@@ -8,6 +8,7 @@ import {saveNoteReducer} from "./notesSave";
 import {swapFolders} from "./foldersSwap";
 import {folderUpdateReducer} from "./folderUpdateReducer";
 import {createFolder} from "./folderCreate";
+import {renameFolder} from "./folderRename";
 
 
 const initialState: NotesStateType = {
@@ -63,6 +64,7 @@ export const notesSlice = createSlice({
         saveNoteReducer(builder)
         folderUpdateReducer(builder, swapFolders)
         folderUpdateReducer(builder, createFolder)
+        folderUpdateReducer(builder, renameFolder)
     }
 })
 export const { selectFolder, selectNote, setSearchStr, setIsEditingNote } = notesSlice.actions
