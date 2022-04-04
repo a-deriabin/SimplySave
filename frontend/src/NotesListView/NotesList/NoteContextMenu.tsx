@@ -1,26 +1,55 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {IoPencil, IoArrowRedo, IoTrash} from "react-icons/io5";
 import ContextMenuButton from "../../shared/components/ContextMenuButton";
 import ContextMenu, {PositionType} from "../../shared/components/ContextMenu";
+import RenameDialog from "../../shared/components/RenameDialog";
+import {useDispatch, useSelector} from "react-redux";
+import {notesSelector} from "../../shared/redux/notes/notesSlice";
+import {renameNote} from "../../shared/redux/notes/notesRename";
 
 type PropsType = {
-    targetNoteId: string|null,
+    targetNoteId: string | null,
     isOpen: boolean,
     onClose: () => void,
     position: PositionType,
 }
 
 function NoteContextMenu(props: PropsType) {
+    const [isRenaming, setIsRenaming] = useState(false)
+    const [showDeleteDialog, setShowDeleteDialog] = useState(false)
+
+    const dispatch = useDispatch()
+    const notesData = useSelector(notesSelector)
+    const noteIndex = notesData.notesList.findIndex(x => x.id === props.targetNoteId)
+    const note = notesData.notesList[noteIndex] ?? null
+
     const handleRename = () => {
-        console.log('rename ' + props.targetNoteId)
+        setIsRenaming(true)
+        props.onClose()
+    }
+    const handleRenameFinish = (newTitle: string|null) => {
+        setIsRenaming(false)
+        if (newTitle && props.targetNoteId) {
+            dispatch(renameNote({
+                id: props.targetNoteId,
+                newTitle: newTitle,
+            }))
+        }
     }
 
     return (
-        <ContextMenu isOpen={props.isOpen} position={props.position} onClose={props.onClose}>
-            <ContextMenuButton text='Rename' icon={IoPencil} onClick={handleRename} />
-            <ContextMenuButton text='Move' icon={IoArrowRedo} />
-            <ContextMenuButton text='Delete' icon={IoTrash} />
-        </ContextMenu>
+        <>
+            <RenameDialog
+                isVisible={isRenaming}
+                onClose={handleRenameFinish}
+                initialTitle={note?.title ?? ''}
+            />
+            <ContextMenu isOpen={props.isOpen} position={props.position} onClose={props.onClose}>
+                <ContextMenuButton text='Rename' icon={IoPencil} onClick={handleRename}/>
+                <ContextMenuButton text='Move' icon={IoArrowRedo}/>
+                <ContextMenuButton text='Delete' icon={IoTrash}/>
+            </ContextMenu>
+        </>
     );
 }
 

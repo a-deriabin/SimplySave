@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import styles from "../AddDialog/styles.module.scss";
-import Dialog from "../../../shared/components/Dialog";
-import Stack from "../../../shared/components/Stack";
-import FormInput from "../../../shared/components/FormInput";
-import HorizontalButton from "../../../shared/components/HorizontalButton";
-import Span from "../../../shared/components/Span";
+import styles from "../../../NotesListView/SidePanel/AddDialog/styles.module.scss";
+import Dialog from "../Dialog";
+import Stack from "../Stack";
+import FormInput from "../FormInput";
+import HorizontalButton from "../HorizontalButton";
+import Span from "../Span";
 
 type PropsType = {
     isVisible: boolean,

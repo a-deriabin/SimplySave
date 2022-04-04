@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import ContextMenu, {PositionType} from "../../../shared/components/ContextMenu";
 import {IoPencil, IoTrash} from "react-icons/io5";
 import ContextMenuButton from "../../../shared/components/ContextMenuButton";
-import RenameDialog from "../RenameDialog";
+import RenameDialog from "../../../shared/components/RenameDialog";
 import {useDispatch, useSelector} from "react-redux";
 import {renameFolder} from "../../../shared/redux/notes/folderRename";
 import {notesSelector} from "../../../shared/redux/notes/notesSlice";

@@ -13,6 +13,11 @@ export type CreateNoteType = {
     password: string,
 }
 
+export type RenameNoteType = {
+    id: string,
+    newTitle: string,
+}
+
 export type SaveNoteType = {
     id: string,
     content: string,
