@@ -41,7 +41,11 @@
                 { id: '1', title: 'Demo folder', icon: 'star' },
                 { id: '2', title: 'Something else', icon: 'cloud' },
                 { id: '3', title: 'Whatever', icon: 'cube' },
-            ]
+            ],
+            config: {
+                dataDirPath: './TestDir',
+                notesSort: 'alphabet',
+            }
         }
 
         // Placeholder API. Real implementation should be provided by wrapper app.
@@ -110,6 +114,14 @@
         window._simplysave_set_folders = async (folders_list) => {
             data.folders = [...folders_list]
             console.log(data.folders)
+        }
+
+        window._simplysave_load_config = async () => {
+            return Object.assign({}, data.config)
+        }
+        window._simplysave_save_config = async (config) => {
+            data.config = Object.assign({}, config)
+            return Object.assign({}, data.config)
         }
     </script>
 </head>
