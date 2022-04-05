@@ -3,6 +3,7 @@ import Container from "../../shared/components/Container";
 import styles from './styles.module.scss'
 import {useDispatch, useSelector} from "react-redux";
 import {notesSearchStrSelector, setSearchStr} from "../../shared/redux/notes/notesSlice";
+import SortBtn from "./SortBtn";
 
 function SearchBar() {
     const dispatch = useDispatch()
@@ -23,6 +24,7 @@ function SearchBar() {
                 value={searchStr}
                 onChange={handleChange}
             />
+            <SortBtn />
         </Container>
     );
 }

@@ -1,7 +1,7 @@
 import React, {DetailedHTMLProps, ForwardedRef, HTMLAttributes} from 'react';
 
 type BoxProps = {
-    children: React.ReactNode,
+    children?: React.ReactNode,
 } & DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 
 const Box = React.forwardRef((props: BoxProps, ref: ForwardedRef<HTMLDivElement>) => {
