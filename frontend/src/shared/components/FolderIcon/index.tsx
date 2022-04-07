@@ -21,21 +21,30 @@ import {
     IoBarbellSharp,
     IoBarbellOutline,
     IoBriefcaseSharp,
-    IoBriefcaseOutline, IoFishSharp, IoFishOutline, IoRocketOutline, IoRocketSharp,
+    IoBriefcaseOutline,
+    IoFishSharp,
+    IoFishOutline,
+    IoRocketOutline,
+    IoRocketSharp,
+    IoDocumentSharp,
+    IoDocumentOutline,
+    IoBasketballSharp, IoBasketballOutline,
 } from 'react-icons/io5'
 import styles from '../../../NotesListView/SidePanel/styles.module.scss'
 import {IconType} from "react-icons";
 
-export type FolderIconNameType = 'add' | 'airplane' | 'barbell' | 'case'  |
-    'check' | 'cloud' | 'code' | 'cube' | 'fish' | 'home' | 'rocket' | 'star' | 'settings' | string
+export type FolderIconNameType = 'add' | 'airplane' | 'ball' | 'case'  |
+    'check' | 'cloud' | 'code' | 'cube' | 'document' | 'fish' | 'home' |
+    'rocket' | 'star' | 'settings' | string
 export const UserFolderIcons = [
     { id: 'airplane', title: 'Airplane' },
-    { id: 'barbell', title: 'Barbell' },
+    { id: 'ball', title: 'Ball' },
     { id: 'case', title: 'Case' },
     { id: 'check', title: 'Checkmark' },
     { id: 'cloud', title: 'Cloud' },
     { id: 'code', title: 'Code' },
     { id: 'cube', title: 'Cube' },
+    { id: 'document', title: 'Document' },
     { id: 'fish', title: 'Fish' },
     { id: 'rocket', title: 'Rocket' },
     { id: 'star', title: 'Star' },
@@ -54,8 +63,8 @@ function getIcon(props: FolderIconProps): IconType {
             return isSel ? IoAddCircleSharp : IoAddCircleOutline
         case 'airplane':
             return isSel ? IoAirplaneSharp : IoAirplaneOutline
-        case 'barbell':
-            return isSel ? IoBarbellSharp : IoBarbellOutline
+        case 'ball':
+            return isSel ? IoBasketballSharp : IoBasketballOutline
         case 'settings':
             return isSel ? IoSettingsSharp : IoSettingsOutline
         case 'case':
@@ -68,6 +77,8 @@ function getIcon(props: FolderIconProps): IconType {
             return isSel ? IoCodeSharp : IoCode
         case 'cube':
             return isSel ? IoCubeSharp : IoCubeOutline
+        case 'document':
+            return isSel ? IoDocumentSharp : IoDocumentOutline
         case 'fish':
             return isSel ? IoFishSharp : IoFishOutline
         case 'home':
