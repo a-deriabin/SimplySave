@@ -22,7 +22,7 @@ function SelectFolderScreen(props: PropsType) {
                 <HorizontalButton key={folder.id} onClick={handleSelect(folder.id)}>
                     <Stack direction='row' justify='space-between' align='center'>
                         <FolderIcon name={folder.icon} />
-                        <Container horizontalAlign='center'>
+                        <Container horizontalAlign='start' style={{ marginLeft: '15px' }}>
                             {folder.title}
                         </Container>
                     </Stack>

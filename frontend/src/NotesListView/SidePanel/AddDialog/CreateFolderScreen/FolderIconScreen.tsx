@@ -18,7 +18,7 @@ function FolderIconScreen(props: PropsType) {
                 <HorizontalButton key={icon.id} onClick={handleSelect(icon.id)}>
                     <Stack direction='row' justify='space-between' align='center'>
                         <FolderIcon name={icon.id} />
-                        <Container horizontalAlign='center'>
+                        <Container horizontalAlign='start' style={{ marginLeft: '15px' }}>
                             {icon.title}
                         </Container>
                     </Stack>

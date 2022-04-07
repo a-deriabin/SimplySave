@@ -35,7 +35,7 @@ const FolderBox = React.forwardRef((props: FolderBoxProps, ref: ForwardedRef<HTM
                 onClick={props.onClick}
             >
                 <FolderIcon name={props.icon} isSelected={props.isSelected}/>
-                <div style={{textAlign: 'center'}}>
+                <div className={styles.folderText}>
                     {props.title}
                 </div>
             </Stack>

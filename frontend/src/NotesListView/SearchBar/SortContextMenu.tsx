@@ -28,27 +28,27 @@ function SortContextMenu(props: PropsType) {
     return (
         <ContextMenu isOpen={props.isOpen} position={props.position} onClose={props.onClose}>
             <ContextMenuButton
-                text='By name'
+                text='Title'
                 icon={iconIf('alphabet')}
                 onClick={handleSetSort('alphabet')}
             />
             <ContextMenuButton
-                text='By creation date (old first)'
+                text='Creation date (old first)'
                 icon={iconIf('create-date')}
                 onClick={handleSetSort('create-date')}
             />
             <ContextMenuButton
-                text='By creation date (new first)'
+                text='Creation date (new first)'
                 icon={iconIf('create-date-desc')}
                 onClick={handleSetSort('create-date-desc')}
             />
             <ContextMenuButton
-                text='By edit date (old first)'
+                text='Edit date (old first)'
                 icon={iconIf('edit-date')}
                 onClick={handleSetSort('edit-date')}
             />
             <ContextMenuButton
-                text='By edit date (new first)'
+                text='Edit date (new first)'
                 icon={iconIf('edit-date-desc')}
                 onClick={handleSetSort('edit-date-desc')}
             />
