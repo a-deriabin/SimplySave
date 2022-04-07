@@ -14,6 +14,7 @@ import {renameNote} from "./notesRename";
 import {notesReloadReducer} from "./notesReloadReducer";
 import {deleteNote} from "./notesDelete";
 import {moveNote} from "./notesMove";
+import {changeFolderIcon} from "./folderChangeIcon";
 
 
 const initialState: NotesStateType = {
@@ -74,6 +75,7 @@ export const notesSlice = createSlice({
         folderUpdateReducer(builder, createFolder)
         folderUpdateReducer(builder, renameFolder)
         folderUpdateReducer(builder, deleteFolder)
+        folderUpdateReducer(builder, changeFolderIcon)
     }
 })
 export const { selectFolder, selectNote, setSearchStr, setIsEditingNote } = notesSlice.actions

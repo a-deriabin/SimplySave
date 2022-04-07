@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import ContextMenu, {PositionType} from "../../../shared/components/ContextMenu";
-import {IoPencil, IoTrash} from "react-icons/io5";
+import {IoExtensionPuzzle, IoPencil, IoTrash} from "react-icons/io5";
 import ContextMenuButton from "../../../shared/components/ContextMenuButton";
 import RenameDialog from "../../../shared/components/RenameDialog";
 import {useDispatch, useSelector} from "react-redux";
@@ -9,6 +9,7 @@ import {notesSelector} from "../../../shared/redux/notes/notesSlice";
 import MessageDialog from "../../../shared/components/MessageDialog";
 import ConfirmDialog from "../../../shared/components/ConfirmDialog";
 import {deleteFolder} from "../../../shared/redux/notes/folderDelete";
+import SelectFolderDialog from "./SelectFolderDialog";
 
 type PropsType = {
     targetFolderId: string | null,
@@ -20,6 +21,7 @@ type PropsType = {
 function FolderContextMenu(props: PropsType) {
     const [isRenaming, setIsRenaming] = useState(false)
     const [showCannotDelete, setShowCannotDelete] = useState(false)
+    const [showIconDialog, setShowIconDialog] = useState(false)
     const [showDeleteDialog, setShowDeleteDialog] = useState(false)
 
     const dispatch = useDispatch()
@@ -37,6 +39,12 @@ function FolderContextMenu(props: PropsType) {
         if (newTitle !== null && props.targetFolderId !== null)
             dispatch(renameFolder([props.targetFolderId, newTitle]))
     }
+
+    const handleIconChange = () => {
+        setShowIconDialog(true)
+        props.onClose()
+    }
+    const handleIconDialogClose = () => setShowIconDialog(false)
 
     const handleDelete = () => {
         setShowDeleteDialog(true)
@@ -75,8 +83,14 @@ function FolderContextMenu(props: PropsType) {
                 message='Are you sure you want to delete this folder?'
                 confirmMsg='Delete'
             />
+            <SelectFolderDialog
+                folderId={props.targetFolderId ?? ''}
+                isVisible={showIconDialog}
+                onClose={handleIconDialogClose}
+            />
             <ContextMenu isOpen={props.isOpen} position={props.position} onClose={props.onClose}>
                 <ContextMenuButton text='Rename' icon={IoPencil} onClick={handleRename} />
+                <ContextMenuButton text='Change icon' icon={IoExtensionPuzzle} onClick={handleIconChange} />
                 <ContextMenuButton text='Delete' icon={IoTrash} onClick={handleDelete} />
             </ContextMenu>
         </>
