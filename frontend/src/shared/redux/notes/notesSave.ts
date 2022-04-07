@@ -1,5 +1,5 @@
 import {ActionReducerMapBuilder, createAsyncThunk} from "@reduxjs/toolkit";
-import {SaveNoteType, NotesStateType} from "./notesSlice.types";
+import {SaveNoteType, NotesStateType, NoteType} from "./notesSlice.types";
 import {RootStateType} from "../store";
 import {decryptContent, encryptContent} from "../../utils/encryption";
 
@@ -20,8 +20,11 @@ export const saveNote = createAsyncThunk('notes/save', async (data: SaveNoteType
     }
 
     // @ts-ignore
-    await window._simplysave_save_note(saveData)
-    return encryptedContent
+    const newNotes: NoteType[] = await window._simplysave_save_note(saveData)
+    return {
+        encryptedContent,
+        newNotes
+    }
 })
 
 export const saveNoteReducer = (builder: ActionReducerMapBuilder<NotesStateType>) => {
@@ -31,7 +34,8 @@ export const saveNoteReducer = (builder: ActionReducerMapBuilder<NotesStateType>
     })
     builder.addCase(saveNote.fulfilled, (state, action) => {
         state.saveNoteStatus = 'success'
-        state.openContent = action.payload
+        state.openContent = action.payload.encryptedContent
+        state.notesList = action.payload.newNotes
         state.isEditingNote = false
         state.error = null
     })
