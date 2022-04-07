@@ -6,6 +6,9 @@ import {notesSelector} from "../../shared/redux/notes/notesSlice";
 import Placeholder from "./Placeholder";
 import NoteContextMenu from "./NoteContextMenu";
 import {PositionType} from "../../shared/components/ContextMenu";
+import {NoteType} from "../../shared/redux/notes/notesSlice.types";
+import {configSelector} from "../../shared/redux/config/configSlice";
+import {sortByType} from "./utils/sortByType";
 
 type PropsType = {
     isMobile: boolean,
@@ -13,6 +16,8 @@ type PropsType = {
 
 function NotesList(props: PropsType) {
     const notesData = useSelector(notesSelector)
+    const sort = useSelector(configSelector).notesSort
+
     let notes = notesData.openFolderId === null ? notesData.notesList :
         notesData.notesList.filter(note => note.folderId === notesData.openFolderId)
 
@@ -34,6 +39,8 @@ function NotesList(props: PropsType) {
     if (notesData.searchStr !== '') {
         notes = notes.filter(note => note.title.includes(notesData.searchStr))
     }
+
+    notes = sortByType(notes, sort)
 
     return (
         <Stack direction='column'>
