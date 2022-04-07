@@ -44,6 +44,7 @@ export const notesSlice = createSlice({
     name: 'notes',
     initialState,
     reducers: {
+        resetState: () => ({...initialState }),
         selectFolder: (state, action: PayloadAction<string|null>) => {
             state.openFolderId = action.payload
         },
@@ -78,4 +79,4 @@ export const notesSlice = createSlice({
         folderUpdateReducer(builder, changeFolderIcon)
     }
 })
-export const { selectFolder, selectNote, setSearchStr, setIsEditingNote } = notesSlice.actions
+export const { resetState, selectFolder, selectNote, setSearchStr, setIsEditingNote } = notesSlice.actions

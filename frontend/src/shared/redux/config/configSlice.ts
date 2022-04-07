@@ -4,6 +4,7 @@ import {createSlice} from "@reduxjs/toolkit";
 import {configUpdateReducer} from "./configUpdateReducer";
 import {loadConfig} from "./configLoad";
 import {setConfigSort} from "./configSetSort";
+import {setConfigDataDir} from "./configSetDataDir";
 
 const initialState: ConfigStateType = {
     dataDirPath: './UserData',
@@ -20,5 +21,6 @@ export const configSlice = createSlice({
     extraReducers(builder) {
         configUpdateReducer(builder, loadConfig)
         configUpdateReducer(builder, setConfigSort)
+        configUpdateReducer(builder, setConfigDataDir)
     }
 })

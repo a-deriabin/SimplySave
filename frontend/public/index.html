@@ -132,6 +132,12 @@
             data.config = Object.assign({}, config)
             return Object.assign({}, data.config)
         }
+
+        window._simplysave_folder_dialog = async () => {
+            // Real implementation should open folder browse dialog/screen.
+            // Should return null on cancel.
+            return 'C:/Fakepath/Fakefolder'
+        }
     </script>
 </head>
 <body>

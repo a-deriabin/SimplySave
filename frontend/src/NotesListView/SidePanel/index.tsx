@@ -5,13 +5,14 @@ import FolderBox from "./FolderBox";
 import Stack from "../../shared/components/Stack";
 import FolderList from "./FolderList";
 import AddDialog from "./AddDialog";
+import SettingsDialog from "./SettingsDialog";
 
 function Folders() {
     const [isAddOpen, setIsAddOpen] = useState(false)
+    const [isSettingsOpen, setIsSettingsOpen] = useState(false)
 
-    const handleSettingsClick = () => {
-        console.log('settings')
-    }
+    const handleSettingsClick = () => setIsSettingsOpen(true)
+    const handleSettingsClose = () => setIsSettingsOpen(false)
     const handleAddClick = () => setIsAddOpen(true)
     const handleAddClose = () => setIsAddOpen(false)
 
@@ -35,6 +36,7 @@ function Folders() {
                 </Stack>
             </Stack>
             <AddDialog isVisible={isAddOpen} onClose={handleAddClose} />
+            <SettingsDialog isVisible={isSettingsOpen} onClose={handleSettingsClose} />
         </Container>
     );
 }
