@@ -8,7 +8,7 @@ function cmp(a: any, b: any) {
 function getSortFunc(sortType: NotesSortType) {
     switch (sortType) {
         case 'alphabet':
-            return (a: NoteType, b: NoteType) => cmp(a.title, b.title)
+            return (a: NoteType, b: NoteType) => cmp(a.title.toLowerCase(), b.title.toLowerCase())
         case "create-date":
             return (a: NoteType, b: NoteType) => cmp(a.createdTimestamp, b.createdTimestamp)
         case 'create-date-desc':
