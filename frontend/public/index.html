@@ -144,40 +144,58 @@
 
     <% if (process.env.NODE_ENV === 'production') { %>
     <script type="text/javascript">
-        window._simplysave_create_note = async (createData) => {
+        // C# WebView2 is bugged when using async code, so using sync versions for now.
+        // Keeping JS API for future compatibility.
 
+        window._simplysave_create_note = async (createData) => {
+            return JSON.parse(window.chrome.webview.hostObjects.sync.dotnet.CreateNote(
+                JSON.stringify(createData)
+            ))
         }
         window._simplysave_save_note = async (saveData) => {
-
+            return JSON.parse(window.chrome.webview.hostObjects.sync.dotnet.SaveNote(
+                JSON.stringify(saveData)
+            ))
         }
         window._simplysave_rename_note = async (renameData) => {
-
+            return JSON.parse(window.chrome.webview.hostObjects.sync.dotnet.RenameNote(
+                JSON.stringify(renameData)
+            ))
         }
         window._simplysave_note_change_folder = async (noteId, folderId) => {
-
+            return JSON.parse(window.chrome.webview.hostObjects.sync.dotnet.SetNoteFolder(
+                JSON.stringify({
+                    noteId,
+                    folderId
+                })
+            ))
         }
         window._simplysave_delete_note = async (id) => {
-
+            return JSON.parse(window.chrome.webview.hostObjects.sync.dotnet.DeleteNote(id))
         }
         window._simplysave_load = async () => {
-            window.chrome.webview.hostObjects.sync.dotnet.Test('hi')
+            return JSON.parse(window.chrome.webview.hostObjects.sync.dotnet.LoadNotes())
         }
         window._simplysave_load_content = async (noteId) => {
-
+            return JSON.parse(window.chrome.webview.hostObjects.sync.dotnet.LoadContent(noteId))
         }
-        window._simplysave_set_folders = async (folders_list) => {
-
+        window._simplysave_set_folders = async (foldersList) => {
+            return JSON.parse(window.chrome.webview.hostObjects.sync.dotnet.SetFolders(
+                JSON.stringify(foldersList)
+            ))
         }
 
         window._simplysave_load_config = async () => {
-
+            return JSON.parse(window.chrome.webview.hostObjects.sync.dotnet.LoadConfig())
         }
         window._simplysave_save_config = async (config) => {
-
+            return JSON.parse(window.chrome.webview.hostObjects.sync.dotnet.SaveConfig(
+                JSON.stringify(config)
+            ))
         }
 
         window._simplysave_folder_dialog = async () => {
-
+            return window.chrome.webview.hostObjects.sync.dotnet.ShowFolderDialog()
         }
     </script>
     <% } %>
