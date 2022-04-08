@@ -39,6 +39,9 @@ namespace SimplySaveWindows
                 
                 webView.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.All);
 
+                var interopObject = new InteropObject();
+                webView.CoreWebView2.AddHostObjectToScript("dotnet", interopObject);
+
                 //string indexFile = Path.Join(Directory.GetCurrentDirectory(), "bundle", "index.html");
                 //webView.CoreWebView2.Navigate("file:///" + indexFile);
                 webView.CoreWebView2.Navigate("file:///index.html");

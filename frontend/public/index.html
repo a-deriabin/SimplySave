@@ -141,6 +141,46 @@
         }
     </script>
     <% } %>
+
+    <% if (process.env.NODE_ENV === 'production') { %>
+    <script type="text/javascript">
+        window._simplysave_create_note = async (createData) => {
+
+        }
+        window._simplysave_save_note = async (saveData) => {
+
+        }
+        window._simplysave_rename_note = async (renameData) => {
+
+        }
+        window._simplysave_note_change_folder = async (noteId, folderId) => {
+
+        }
+        window._simplysave_delete_note = async (id) => {
+
+        }
+        window._simplysave_load = async () => {
+            window.chrome.webview.hostObjects.sync.dotnet.Test('hi')
+        }
+        window._simplysave_load_content = async (noteId) => {
+
+        }
+        window._simplysave_set_folders = async (folders_list) => {
+
+        }
+
+        window._simplysave_load_config = async () => {
+
+        }
+        window._simplysave_save_config = async (config) => {
+
+        }
+
+        window._simplysave_folder_dialog = async () => {
+
+        }
+    </script>
+    <% } %>
 </head>
 <body>
 <noscript>You need to enable JavaScript to run this app.</noscript>
