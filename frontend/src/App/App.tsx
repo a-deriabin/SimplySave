@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {notesLoadStateSelector} from "../shared/redux/notes/notesSlice";
 import {loadNotes} from "../shared/redux/notes/notesLoad";
 import useWindowDimensions from "../shared/hooks/useWindowDimensions";
+import {loadConfig} from "../shared/redux/config/configLoad";
 
 function App() {
     const notesLoadState = useSelector(notesLoadStateSelector)
@@ -22,6 +23,7 @@ function App() {
     useEffect(() => {
         if (notesLoadState === 'idle') {
             dispatch(loadNotes())
+            dispatch(loadConfig())
         }
     }, [dispatch, notesLoadState])
 
