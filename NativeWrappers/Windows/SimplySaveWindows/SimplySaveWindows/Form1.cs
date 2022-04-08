@@ -15,9 +15,13 @@ namespace SimplySaveWindows
 {
     public partial class Form1 : Form
     {
+        private Config config = new Config();
+
         public Form1()
         {
             InitializeComponent();
+
+            config.Load();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -39,7 +43,8 @@ namespace SimplySaveWindows
                 
                 webView.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.All);
 
-                var interopObject = new InteropObject();
+                var api = new Api(config);
+                var interopObject = new InteropObject(api);
                 webView.CoreWebView2.AddHostObjectToScript("dotnet", interopObject);
 
                 //string indexFile = Path.Join(Directory.GetCurrentDirectory(), "bundle", "index.html");

@@ -1,14 +1,23 @@
-﻿using System;
+﻿using SimplySaveWindows.DataTransfer;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace SimplySaveWindows
 {
     public class InteropObject
     {
+        private readonly Api api;
+
+        public InteropObject(Api api)
+        {
+            this.api = api;
+        }
+
         public string CreateNote(string json)
         {
             return null;
@@ -51,12 +60,14 @@ namespace SimplySaveWindows
 
         public string LoadConfig()
         {
-            return null;
+            return JsonSerializer.Serialize(api.LoadConfig());
         }
 
         public string SaveConfig(string json)
         {
-            return null;
+            var data = JsonSerializer.Deserialize(json, typeof(ConfigData)) as ConfigData;
+            api.SaveConfig(data);
+            return json;
         }
 
         public string ShowFolderDialog()
