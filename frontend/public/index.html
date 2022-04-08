@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="theme-color" content="#000000"/>
     <title>SimplySave app</title>
+    <% if (process.env.NODE_ENV === 'development') { %>
     <script type="text/javascript">
         // Placeholder data. Real data will be managed by wrapper app.
         let data = {
@@ -139,6 +140,7 @@
             return 'C:/Fakepath/Fakefolder'
         }
     </script>
+    <% } %>
 </head>
 <body>
 <noscript>You need to enable JavaScript to run this app.</noscript>
