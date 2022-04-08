@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import FolderBox, {DivMouseEvent} from "./FolderBox";
 import Container from "../../shared/components/Container";
 import Stack from "../../shared/components/Stack";
@@ -9,6 +9,7 @@ import {swapFolders} from "../../shared/redux/notes/foldersSwap";
 import styles from './styles.module.scss';
 import FolderContextMenu from "./FolderContextMenu";
 import {PositionType} from "../../shared/components/ContextMenu";
+import {useKeyPress} from "../../shared/hooks/useKeyPress";
 
 function FolderList() {
     const dispatch = useDispatch()
@@ -16,6 +17,30 @@ function FolderList() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [menuPostion, setMenuPosition] = useState<PositionType>({x: 0, y: 0})
     const [menuForId, setMenuForId] = useState<string|null>(null)
+
+    const isArrowDown = useKeyPress('ArrowDown', 'ctrl')
+    useEffect(() => {
+        if (isArrowDown) {
+            const folders = notesData.foldersList
+            const curId = notesData.openFolderId
+            const curIndex = folders.findIndex(x => x.id === curId)
+            const nextIndex = curIndex + 1 >= folders.length ? -1 : curIndex + 1
+            const nextId = nextIndex === -1 ? null : folders[nextIndex].id
+            dispatch(selectFolder(nextId))
+        }
+    }, [isArrowDown, dispatch, notesData.foldersList, notesData.openFolderId])
+
+    const isArrowUp = useKeyPress('ArrowUp', 'ctrl')
+    useEffect(() => {
+        if (isArrowUp) {
+            const folders = notesData.foldersList
+            const curId = notesData.openFolderId
+            const curIndex = folders.findIndex(x => x.id === curId)
+            const nextIndex = curIndex - 1 < -1 ? folders.length - 1 : curIndex - 1
+            const nextId = nextIndex === -1 ? null : folders[nextIndex].id
+            dispatch(selectFolder(nextId))
+        }
+    }, [isArrowUp, dispatch, notesData.foldersList, notesData.openFolderId])
 
     const handleMenuClose = () => setIsMenuOpen(false)
     const handleContextMenuOpen = (id: string) => (e: React.MouseEvent) => {

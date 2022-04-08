@@ -8,6 +8,8 @@ function isKeyHeld(e: KeyboardEvent, hold?: HoldKeyType) {
         return false
     if (hold === 'alt' && !e.altKey)
         return false
+    if ((hold === 'none' || !hold) && (e.altKey || e.ctrlKey))
+        return false
     return true
 }
 
