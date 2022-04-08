@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {notesSelector} from "../shared/redux/notes/notesSlice";
+import {notesSelector, selectNote} from "../shared/redux/notes/notesSlice";
 import {decryptContent} from "../shared/utils/encryption";
 import PasswordInputScreen from "./PasswordInputScreen";
 import ViewScreen from "./ViewScreen";
 import {saveNote} from "../shared/redux/notes/notesSave";
+import {useKeyPress} from "../shared/hooks/useKeyPress";
 
 type PropsType = {
     isMobile: boolean,
@@ -18,6 +19,11 @@ function NoteContentView(props: PropsType) {
     const lockedContent = notesData.openContent
     const [unlockedContent, setUnlockedContent] = useState<string|null>(null)
 
+    const isEscapePressed = useKeyPress('Escape')
+    useEffect(() => {
+        if (isEscapePressed && !notesData.isEditingNote)
+            dispatch(selectNote(null))
+    }, [isEscapePressed, dispatch, notesData.isEditingNote])
 
     const handleNewPassword = (newPass: string) => {
         if (lockedContent === null)

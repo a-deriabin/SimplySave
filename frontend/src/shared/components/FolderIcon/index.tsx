@@ -18,8 +18,6 @@ import {
     IoStarSharp,
     IoAirplaneSharp,
     IoAirplaneOutline,
-    IoBarbellSharp,
-    IoBarbellOutline,
     IoBriefcaseSharp,
     IoBriefcaseOutline,
     IoFishSharp,

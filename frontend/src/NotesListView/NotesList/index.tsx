@@ -1,14 +1,15 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Stack from "../../shared/components/Stack";
 import NoteEntry from "./NoteEntry";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {notesSelector} from "../../shared/redux/notes/notesSlice";
 import Placeholder from "./Placeholder";
 import NoteContextMenu from "./NoteContextMenu";
 import {PositionType} from "../../shared/components/ContextMenu";
-import {NoteType} from "../../shared/redux/notes/notesSlice.types";
 import {configSelector} from "../../shared/redux/config/configSlice";
 import {sortByType} from "./utils/sortByType";
+import {useKeyPress} from "../../shared/hooks/useKeyPress";
+import {loadNoteContent} from "../../shared/redux/notes/notesLoadContent";
 
 type PropsType = {
     isMobile: boolean,
@@ -17,6 +18,7 @@ type PropsType = {
 function NotesList(props: PropsType) {
     const notesData = useSelector(notesSelector)
     const sort = useSelector(configSelector).notesSort
+    const dispatch = useDispatch()
 
     let notes = notesData.openFolderId === null ? notesData.notesList :
         notesData.notesList.filter(note => note.folderId === notesData.openFolderId)
@@ -24,6 +26,26 @@ function NotesList(props: PropsType) {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [menuPostion, setMenuPosition] = useState<PositionType>({x: 0, y: 0})
     const [menuForId, setMenuForId] = useState<string|null>(null)
+
+    const isDownPressed = useKeyPress('ArrowDown')
+    useEffect(() => {
+        if (isDownPressed && notes.length > 0) {
+            const lastId = notes.length - 1
+            const openId = notes.findIndex(x => x.id === notesData.openNoteId)
+            const id = openId === -1 ? 0 : openId + 1 > lastId ? 0 : openId + 1
+            dispatch(loadNoteContent(notes[id].id))
+        }
+    }, [isDownPressed, notesData, dispatch, notes])
+
+    const isUpPressed = useKeyPress('ArrowUp')
+    useEffect(() => {
+        if (isUpPressed && notes.length > 0) {
+            const lastId = notes.length - 1
+            const openId = notes.findIndex(x => x.id === notesData.openNoteId)
+            const id = openId === -1 ? lastId : openId - 1 < 0 ? lastId : openId - 1
+            dispatch(loadNoteContent(notes[id].id))
+        }
+    })
 
     const handleMenuClose = () => setIsMenuOpen(false)
     const handleContextMenuOpen = (id: string) => (e: React.MouseEvent) => {
