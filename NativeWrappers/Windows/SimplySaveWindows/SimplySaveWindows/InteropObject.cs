@@ -9,9 +9,60 @@ namespace SimplySaveWindows
 {
     public class InteropObject
     {
-        public void Test(string data)
+        public string CreateNote(string json)
         {
-            Debug.WriteLine("it works: " + data);
+            return null;
         }
+
+        public string SaveNote(string json)
+        {
+            return null;
+        }
+
+        public string RenameNote(string json)
+        {
+            return null;
+        }
+
+        public string SetNoteFolder(string json)
+        {
+            return null;
+        }
+
+        public string DeleteNote(string id)
+        {
+            return null;
+        }
+
+        public string LoadNotes()
+        {
+            return null;
+        }
+
+        public string LoadContent(string noteId)
+        {
+            return null;
+        }
+
+        public string SetFolders(string json)
+        {
+            return null;
+        }
+
+        public string LoadConfig()
+        {
+            return null;
+        }
+
+        public string SaveConfig(string json)
+        {
+            return null;
+        }
+
+        public string ShowFolderDialog()
+        {
+            return null;
+        }
+
     }
 }
