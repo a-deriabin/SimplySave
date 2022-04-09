@@ -24,6 +24,7 @@ function ensureContainerExists(node: HTMLElement | null): HTMLElement {
         ensureContainerDestroyed(node)
     }
     const newNode = document.createElement('div')
+    newNode.className = 'dialogParent' // helps finding active dialogs programmatically
     document.body.appendChild(newNode)
     return newNode
 }

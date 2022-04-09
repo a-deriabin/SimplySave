@@ -6,6 +6,7 @@ import PasswordInputScreen from "./PasswordInputScreen";
 import ViewScreen from "./ViewScreen";
 import {saveNote} from "../shared/redux/notes/notesSave";
 import {useKeyPress} from "../shared/hooks/useKeyPress";
+import isAnyDialogOpen from "../shared/utils/isAnyDialogOpen";
 
 type PropsType = {
     isMobile: boolean,
@@ -15,14 +16,13 @@ function NoteContentView(props: PropsType) {
     const dispatch = useDispatch()
     const notesData = useSelector(notesSelector)
     const openNote = notesData.notesList.find(x => x.id === notesData.openNoteId) ?? null
-    //const openNoteId = openNote.id
     const [password, setPassword] = useState<string|null>(null)
     const lockedContent = notesData.openContent
     const [unlockedContent, setUnlockedContent] = useState<string|null>(null)
 
     const isEscapePressed = useKeyPress('Escape')
     useEffect(() => {
-        if (isEscapePressed && !notesData.isEditingNote)
+        if (isEscapePressed && !notesData.isEditingNote && !isAnyDialogOpen())
             dispatch(selectNote(null))
     }, [isEscapePressed, dispatch, notesData.isEditingNote])
 

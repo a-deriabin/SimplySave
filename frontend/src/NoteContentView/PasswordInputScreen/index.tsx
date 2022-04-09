@@ -6,6 +6,7 @@ import styles from './styles.module.scss'
 import HorizontalButton from "../../shared/components/HorizontalButton";
 import MobileTitleBar from "../MobileTitleBar";
 import {useKeyPress} from "../../shared/hooks/useKeyPress";
+import isAnyDialogOpen from "../../shared/utils/isAnyDialogOpen";
 
 type PropsType = {
     onSubmit: (password: string) => boolean,
@@ -27,7 +28,7 @@ function PasswordInputScreen(props: PropsType) {
     
     const isEnterPressed = useKeyPress('Enter')
     useEffect(() => {
-        if (isEnterPressed)
+        if (isEnterPressed && !isAnyDialogOpen())
             handlePress()
     }, [handlePress, isEnterPressed])
 

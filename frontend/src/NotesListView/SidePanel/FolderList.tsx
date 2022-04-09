@@ -10,6 +10,7 @@ import styles from './styles.module.scss';
 import FolderContextMenu from "./FolderContextMenu";
 import {PositionType} from "../../shared/components/ContextMenu";
 import {useKeyPress} from "../../shared/hooks/useKeyPress";
+import isAnyDialogOpen from "../../shared/utils/isAnyDialogOpen";
 
 function FolderList() {
     const dispatch = useDispatch()
@@ -20,7 +21,7 @@ function FolderList() {
 
     const isArrowDown = useKeyPress('ArrowDown', 'ctrl')
     useEffect(() => {
-        if (isArrowDown) {
+        if (isArrowDown && !isAnyDialogOpen()) {
             const folders = notesData.foldersList
             const curId = notesData.openFolderId
             const curIndex = folders.findIndex(x => x.id === curId)
@@ -32,7 +33,7 @@ function FolderList() {
 
     const isArrowUp = useKeyPress('ArrowUp', 'ctrl')
     useEffect(() => {
-        if (isArrowUp) {
+        if (isArrowUp && !isAnyDialogOpen()) {
             const folders = notesData.foldersList
             const curId = notesData.openFolderId
             const curIndex = folders.findIndex(x => x.id === curId)

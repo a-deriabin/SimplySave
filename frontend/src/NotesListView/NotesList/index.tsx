@@ -10,6 +10,7 @@ import {configSelector} from "../../shared/redux/config/configSlice";
 import {sortByType} from "./utils/sortByType";
 import {useKeyPress} from "../../shared/hooks/useKeyPress";
 import {loadNoteContent} from "../../shared/redux/notes/notesLoadContent";
+import isAnyDialogOpen from "../../shared/utils/isAnyDialogOpen";
 
 type PropsType = {
     isMobile: boolean,
@@ -29,7 +30,7 @@ function NotesList(props: PropsType) {
 
     const isDownPressed = useKeyPress('ArrowDown')
     useEffect(() => {
-        if (isDownPressed && notes.length > 0) {
+        if (isDownPressed && notes.length > 0 && !isAnyDialogOpen()) {
             const lastId = notes.length - 1
             const openId = notes.findIndex(x => x.id === notesData.openNoteId)
             const id = openId === -1 ? 0 : openId + 1 > lastId ? 0 : openId + 1
@@ -39,7 +40,7 @@ function NotesList(props: PropsType) {
 
     const isUpPressed = useKeyPress('ArrowUp')
     useEffect(() => {
-        if (isUpPressed && notes.length > 0) {
+        if (isUpPressed && notes.length > 0 && !isAnyDialogOpen()) {
             const lastId = notes.length - 1
             const openId = notes.findIndex(x => x.id === notesData.openNoteId)
             const id = openId === -1 ? lastId : openId - 1 < 0 ? lastId : openId - 1

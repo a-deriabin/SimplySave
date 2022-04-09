@@ -10,6 +10,7 @@ import MobileTitleBar from "./MobileTitleBar";
 import {notesIsEditingSelector, setIsEditingNote} from "../shared/redux/notes/notesSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {useKeyPress} from "../shared/hooks/useKeyPress";
+import isAnyDialogOpen from "../shared/utils/isAnyDialogOpen";
 
 type PropsType = {
     content: string,
@@ -41,12 +42,12 @@ function ViewScreen(props: PropsType) {
     }, [dispatch, editingContent, props])
 
     useEffect(() => {
-        if (isEditing && isCtrlSPressed)
+        if (isEditing && isCtrlSPressed && !isAnyDialogOpen())
             handleSave()
     }, [isEditing, isCtrlSPressed, handleSave])
 
     useEffect(() => {
-        if (!isEditing && isEnterPressed)
+        if (!isEditing && isEnterPressed && !isAnyDialogOpen())
             handleEdit()
     }, [isEditing, isEnterPressed, handleEdit])
 
