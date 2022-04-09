@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useEffect} from 'react';
 import Stack from "../../../../shared/components/Stack";
 import {useSelector} from "react-redux";
 import {notesSelector} from "../../../../shared/redux/notes/notesSlice";
@@ -13,8 +13,17 @@ type PropsType = {
 function SelectFolderScreen(props: PropsType) {
     const notesData = useSelector(notesSelector)
 
-    const handleSelect = (id: string) => () => props.onSubmit(id)
+    const handleSelect = useCallback(
+        (id: string) => () => props.onSubmit(id),
+        [props]
+    )
 
+    useEffect(() => {
+        if (notesData.foldersList.length === 1) {
+            handleSelect(notesData.foldersList[0].id)
+        }
+    }, [handleSelect, notesData.foldersList])
+    
     return (
         <Stack direction='column'>
             <h2>Select folder</h2>
@@ -29,7 +38,7 @@ function SelectFolderScreen(props: PropsType) {
                 </HorizontalButton>
             ))}
         </Stack>
-    );
+    )
 }
 
 export default SelectFolderScreen;
