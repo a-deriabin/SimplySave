@@ -182,7 +182,7 @@
             }
         }
         window._simplysave_load_content = async (noteId) => {
-            return JSON.parse(window.chrome.webview.hostObjects.sync.dotnet.LoadContent(noteId))
+            return window.chrome.webview.hostObjects.sync.dotnet.LoadContent(noteId)
         }
         window._simplysave_set_folders = async (foldersList) => {
             window.chrome.webview.hostObjects.sync.dotnet.SetFolders(
