@@ -34,14 +34,14 @@
                 },
             ],
             notesContent: [
-                { id: '1', content: 'fadsfasfsdfdasf' },
-                { id: '2', content: 'Hello world!' },
-                { id: '3', content: 'Well well well what we have here...' }
+                // { id: '1', content: 'fadsfasfsdfdasf' },
+                // { id: '2', content: 'Hello world!' },
+                // { id: '3', content: 'Well well well what we have here...' }
             ],
             folders: [
-                { id: '1', title: 'Demo folder', icon: 'star' },
-                { id: '2', title: 'Something else', icon: 'cloud' },
-                { id: '3', title: 'Whatever', icon: 'cube' },
+                // { id: '1', title: 'Demo folder', icon: 'star' },
+                // { id: '2', title: 'Something else', icon: 'cloud' },
+                // { id: '3', title: 'Whatever', icon: 'cube' },
             ],
             config: {
                 dataDirPath: './TestDir',
@@ -174,7 +174,14 @@
             return JSON.parse(window.chrome.webview.hostObjects.sync.dotnet.DeleteNote(id))
         }
         window._simplysave_load = async () => {
-            return JSON.parse(window.chrome.webview.hostObjects.sync.dotnet.LoadNotes())
+            return {
+                notes: JSON.parse(
+                    window.chrome.webview.hostObjects.sync.dotnet.LoadNotes()
+                ),
+                folders: JSON.parse(
+                    window.chrome.webview.hostObjects.sync.dotnet.LoadFolders()
+                ),
+            }
         }
         window._simplysave_load_content = async (noteId) => {
             return JSON.parse(window.chrome.webview.hostObjects.sync.dotnet.LoadContent(noteId))
