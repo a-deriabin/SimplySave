@@ -15,6 +15,7 @@ function NoteContentView(props: PropsType) {
     const dispatch = useDispatch()
     const notesData = useSelector(notesSelector)
     const openNote = notesData.notesList.find(x => x.id === notesData.openNoteId) ?? null
+    //const openNoteId = openNote.id
     const [password, setPassword] = useState<string|null>(null)
     const lockedContent = notesData.openContent
     const [unlockedContent, setUnlockedContent] = useState<string|null>(null)
@@ -47,7 +48,7 @@ function NoteContentView(props: PropsType) {
 
     useEffect(() => {
         setPassword(null)
-    }, [openNote])
+    }, [openNote?.id]) // only when different note selected!
 
     useEffect(() => {
         if (openNote === null || lockedContent === null) {

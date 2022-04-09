@@ -13,16 +13,13 @@ type PropsType = {
 function SelectFolderScreen(props: PropsType) {
     const notesData = useSelector(notesSelector)
 
-    const handleSelect = useCallback(
-        (id: string) => () => props.onSubmit(id),
-        [props]
-    )
+    const handleSelect = (id: string) => () => props.onSubmit(id)
 
     useEffect(() => {
         if (notesData.foldersList.length === 1) {
-            handleSelect(notesData.foldersList[0].id)
+            props.onSubmit(notesData.foldersList[0].id)
         }
-    }, [handleSelect, notesData.foldersList])
+    }, [notesData.foldersList, props])
     
     return (
         <Stack direction='column'>
