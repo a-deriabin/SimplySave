@@ -20,42 +20,56 @@ namespace SimplySaveWindows
 
         public string CreateNote(string json)
         {
-            return null;
+            var data = JsonSerializer.Deserialize(json, typeof(CreateNoteData)) as CreateNoteData;
+            var newNote = api.CreateNote(data);
+            return JsonSerializer.Serialize(newNote);
         }
 
         public string SaveNote(string json)
         {
-            return null;
+            var data = JsonSerializer.Deserialize(json, typeof(UpdateNoteData)) as UpdateNoteData;
+            var newNotesData = api.UpdateNote(data);
+            return JsonSerializer.Serialize(newNotesData);
         }
 
         public string RenameNote(string json)
         {
-            return null;
+            var data = JsonSerializer.Deserialize(json, typeof(RenameNoteData)) as RenameNoteData;
+            var newNotesData = api.RenameNote(data);
+            return JsonSerializer.Serialize(newNotesData);
         }
 
-        public string SetNoteFolder(string json)
+        public string SetNoteFolder(string noteId, string folderId)
         {
-            return null;
+            var newNotesData = api.SetNoteFolder(noteId, folderId);
+            return JsonSerializer.Serialize(newNotesData);
         }
 
-        public string DeleteNote(string id)
+        public string DeleteNote(string noteId)
         {
-            return null;
+            var newNotesData = api.DeleteNote(noteId);
+            return JsonSerializer.Serialize(newNotesData);
         }
 
         public string LoadNotes()
         {
-            return null;
+            return JsonSerializer.Serialize(api.LoadNotes());
+        }
+
+        public string LoadFolders()
+        {
+            return JsonSerializer.Serialize(api.LoadFolders());
         }
 
         public string LoadContent(string noteId)
         {
-            return null;
+            return api.GetContent(noteId);
         }
 
-        public string SetFolders(string json)
+        public void SetFolders(string json)
         {
-            return null;
+            var data = JsonSerializer.Deserialize(json, typeof(FolderData[])) as FolderData[];
+            api.SetFolders(data);
         }
 
         public string LoadConfig()

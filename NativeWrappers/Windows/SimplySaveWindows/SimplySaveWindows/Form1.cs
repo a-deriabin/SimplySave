@@ -47,8 +47,6 @@ namespace SimplySaveWindows
                 var interopObject = new InteropObject(api);
                 webView.CoreWebView2.AddHostObjectToScript("dotnet", interopObject);
 
-                //string indexFile = Path.Join(Directory.GetCurrentDirectory(), "bundle", "index.html");
-                //webView.CoreWebView2.Navigate("file:///" + indexFile);
                 webView.CoreWebView2.Navigate("file:///index.html");
             }
             catch (Exception e)
