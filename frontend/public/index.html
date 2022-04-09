@@ -165,10 +165,7 @@
         }
         window._simplysave_note_change_folder = async (noteId, folderId) => {
             return JSON.parse(window.chrome.webview.hostObjects.sync.dotnet.SetNoteFolder(
-                JSON.stringify({
-                    noteId,
-                    folderId
-                })
+                noteId, folderId
             ))
         }
         window._simplysave_delete_note = async (id) => {
