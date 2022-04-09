@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import Container from "../../shared/components/Container";
 import FormInput from "../../shared/components/FormInput";
 import Stack from "../../shared/components/Stack";
 import styles from './styles.module.scss'
 import HorizontalButton from "../../shared/components/HorizontalButton";
 import MobileTitleBar from "../MobileTitleBar";
+import {useKeyPress} from "../../shared/hooks/useKeyPress";
 
 type PropsType = {
     onSubmit: (password: string) => boolean,
@@ -15,14 +16,20 @@ function PasswordInputScreen(props: PropsType) {
     const [error, setError] = useState(false)
     const [text, setText] = useState<string>('')
 
-    const handlePress = () => {
+    const handlePress = useCallback(() => {
         setError(!props.onSubmit(text))
-    }
+    }, [props, text])
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setText(e.target.value)
         setError(false)
     }
+    
+    const isEnterPressed = useKeyPress('Enter')
+    useEffect(() => {
+        if (isEnterPressed)
+            handlePress()
+    }, [handlePress, isEnterPressed])
 
     return (
         <Container className={styles.screen}>
@@ -34,6 +41,7 @@ function PasswordInputScreen(props: PropsType) {
                         type='password'
                         placeholder='Password'
                         autoComplete='note-password'
+                        autoFocus
                         value={text}
                         onChange={handleChange}
                     />
