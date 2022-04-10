@@ -26,7 +26,7 @@ namespace SimplySaveWindows
                 throw new Exception($"Note with id {id} already exists! Probably, corrupted metadata.");
 
             using var sw = new StreamWriter(fullPath);
-            sw.WriteLine(content);
+            sw.Write(content);
         }
 
         public void UpdateNote(string id, string content)
@@ -36,7 +36,7 @@ namespace SimplySaveWindows
 
             string fullPath = Path.Combine(SaveFilesDir, $"{id}.ssnf");
             using var sw = new StreamWriter(fullPath);
-            sw.WriteLine(content);
+            sw.Write(content);
         }
 
         public void DeleteNote(string id)
