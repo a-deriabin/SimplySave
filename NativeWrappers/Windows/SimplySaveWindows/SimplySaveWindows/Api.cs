@@ -25,6 +25,9 @@ namespace SimplySaveWindows
 
         private void EnsureNoExtraFiles()
         {
+            if (!Directory.Exists(config.Data.SaveFilesDir))
+                return;
+
             foreach (var file in Directory.GetFiles(config.Data.SaveFilesDir))
             {
                 if (!file.EndsWith(".ssnf"))

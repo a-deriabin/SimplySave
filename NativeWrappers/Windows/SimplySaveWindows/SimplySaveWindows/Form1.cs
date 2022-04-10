@@ -52,6 +52,7 @@ namespace SimplySaveWindows
             }
             catch (Exception e)
             {
+                Debug.WriteLine(e.StackTrace);
                 MessageBox.Show(e.Message);
                 //TODO: automatically download and run installer
                 MessageBox.Show("Might be missing WebView2 Runtime. Download here: https://go.microsoft.com/fwlink/p/?LinkId=2124703");
