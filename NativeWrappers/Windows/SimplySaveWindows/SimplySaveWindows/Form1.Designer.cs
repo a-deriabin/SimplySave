@@ -31,6 +31,7 @@ namespace SimplySaveWindows
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.webView = new Microsoft.Web.WebView2.WinForms.WebView2();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)(this.webView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,6 +66,7 @@ namespace SimplySaveWindows
         #endregion
 
         private Microsoft.Web.WebView2.WinForms.WebView2 webView;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }
 

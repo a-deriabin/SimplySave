@@ -44,7 +44,7 @@ namespace SimplySaveWindows
                 webView.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.All);
 
                 var api = new Api(config);
-                var interopObject = new InteropObject(api);
+                var interopObject = new InteropObject(api, this);
                 webView.CoreWebView2.AddHostObjectToScript("dotnet", interopObject);
 
                 webView.CoreWebView2.Navigate("file:///index.html");
@@ -75,5 +75,13 @@ namespace SimplySaveWindows
             e.Handled = true;
             Process.Start("explorer", e.Uri);
         }
+
+        public string OpenFolderDialog()
+        {
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+                return folderBrowserDialog1.SelectedPath;
+            return null;
+        }
+
     }
 }

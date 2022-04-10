@@ -12,10 +12,12 @@ namespace SimplySaveWindows
     public class InteropObject
     {
         private readonly Api api;
+        private readonly Form1 form;
 
-        public InteropObject(Api api)
+        public InteropObject(Api api, Form1 form)
         {
             this.api = api;
+            this.form = form;
         }
 
         public string CreateNote(string json)
@@ -86,7 +88,7 @@ namespace SimplySaveWindows
 
         public string ShowFolderDialog()
         {
-            return null;
+            return form.OpenFolderDialog();
         }
 
     }

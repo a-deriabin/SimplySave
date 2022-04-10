@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,27 +14,46 @@ namespace SimplySaveWindows
         public NotesStorage(string saveFilesDir)
         {
             SaveFilesDir = saveFilesDir;
-            //TODO: load from file
         }
 
         public void CreateNote(string id, string content)
         {
-            //TODO
+            if (!Directory.Exists(SaveFilesDir))
+                Directory.CreateDirectory(SaveFilesDir);
+
+            string fullPath = Path.Combine(SaveFilesDir, $"{id}.ssnf");
+            if (File.Exists(fullPath))
+                throw new Exception($"Note with id {id} already exists! Probably, corrupted metadata.");
+
+            using var sw = new StreamWriter(fullPath);
+            sw.WriteLine(content);
         }
 
         public void UpdateNote(string id, string content)
         {
-            //TODO
+            if (!Directory.Exists(SaveFilesDir))
+                Directory.CreateDirectory(SaveFilesDir);
+
+            string fullPath = Path.Combine(SaveFilesDir, $"{id}.ssnf");
+            using var sw = new StreamWriter(fullPath);
+            sw.WriteLine(content);
         }
 
         public void DeleteNote(string id)
         {
-            //TODO
+            if (!Directory.Exists(SaveFilesDir))
+                return;
+
+            string fullPath = Path.Combine(SaveFilesDir, $"{id}.ssnf");
+            if (File.Exists(fullPath))
+                File.Delete(fullPath);
         }
 
         public string GetContent(string id)
         {
-            return "todo";
+            string fullPath = Path.Combine(SaveFilesDir, $"{id}.ssnf");
+            using var sr = new StreamReader(fullPath);
+            return sr.ReadToEnd();
         }
 
     }
