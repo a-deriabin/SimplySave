@@ -1,6 +1,7 @@
 ﻿using SimplySaveWindows.DataTransfer;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,20 @@ namespace SimplySaveWindows
             this.config = config;
             metadata = new MetadataStorage(config.SaveFilesDir);
             notes = new NotesStorage(config.SaveFilesDir);
+
+            EnsureNoExtraFiles();
+        }
+
+        private void EnsureNoExtraFiles()
+        {
+            foreach (var file in Directory.GetFiles(config.SaveFilesDir))
+            {
+                if (!file.EndsWith(".ssnf"))
+                    continue;
+                string id = Path.GetFileNameWithoutExtension(file);
+                if (!metadata.Notes.Any(x => x.Id == id))
+                    throw new Exception($"Extra file {id}.ssnf in save directory. Probably corrupted metadata.");
+            }
         }
 
         public NoteData CreateNote(CreateNoteData data)
