@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimplySaveWindows.DataTransfer;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,34 +13,31 @@ namespace SimplySaveWindows
     {
         public readonly string ConfigDir = "./config.json";
 
-        public string SaveFilesDir { get; set; }
-        public string Sort { get; set; }
+        public WindowsConfigData Data { get; set; }
 
-        public void Load()
+        public Config()
         {
             if (!File.Exists(ConfigDir))
             {
-                SaveFilesDir = "./SavedNotes";
-                Sort = "alphabet";
+                Data = new WindowsConfigData()
+                {
+                    SaveFilesDir = "./SavedNotes",
+                    Sort = "alphabet"
+                };
                 Save();
                 return;
             }
 
             using var sr = new StreamReader(ConfigDir);
             string json = sr.ReadToEnd();
-            var parsed = JsonDocument.Parse(json);
-            SaveFilesDir = parsed.RootElement.GetProperty("saveFilesDir").GetString();
-            Sort = parsed.RootElement.GetProperty("sort").GetString();
+
+            Data = JsonSerializer.Deserialize(json, typeof(WindowsConfigData)) as WindowsConfigData;
         }
 
         public void Save()
         {
             using var sw = new StreamWriter(ConfigDir);
-            string json = JsonSerializer.Serialize(new
-            {
-                saveFilesDir = SaveFilesDir,
-                sort = Sort
-            });
+            string json = JsonSerializer.Serialize(Data);
             sw.WriteLine(json);
         }
 

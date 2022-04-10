@@ -31,8 +31,8 @@ namespace SimplySaveWindows
                 using var sr = new StreamReader(FullSaveFilePath);
                 string json = sr.ReadToEnd();
                 var data = JsonSerializer.Deserialize(json, typeof(MetaData)) as MetaData;
-                notes.AddRange(data.notes);
-                folders.AddRange(data.folders);
+                notes.AddRange(data.Notes);
+                folders.AddRange(data.Folders);
             }
         }
 
@@ -90,8 +90,8 @@ namespace SimplySaveWindows
             using var sw = new StreamWriter(FullSaveFilePath);
             string json = JsonSerializer.Serialize(new MetaData()
             {
-                notes = notes,
-                folders = folders
+                Notes = notes,
+                Folders = folders
             });
             sw.WriteLine(json);
         }

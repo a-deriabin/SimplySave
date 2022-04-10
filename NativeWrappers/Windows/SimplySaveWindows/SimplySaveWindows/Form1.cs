@@ -20,12 +20,13 @@ namespace SimplySaveWindows
         public Form1()
         {
             InitializeComponent();
-
-            config.Load();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.Width = config.Data.WindowWidth;
+            this.Height = config.Data.WindowHeight;
+
             RunApp();
         }
 
@@ -83,5 +84,14 @@ namespace SimplySaveWindows
             return null;
         }
 
+        private void Form1_ResizeEnd(object sender, EventArgs e)
+        {
+            if (config.Data.WindowWidth == this.Width && config.Data.WindowHeight == this.Height)
+                return;
+
+            config.Data.WindowWidth = this.Width;
+            config.Data.WindowHeight = this.Height;
+            config.Save();
+        }
     }
 }

@@ -17,15 +17,15 @@ namespace SimplySaveWindows
         public Api(Config config)
         {
             this.config = config;
-            metadata = new MetadataStorage(config.SaveFilesDir);
-            notes = new NotesStorage(config.SaveFilesDir);
+            metadata = new MetadataStorage(config.Data.SaveFilesDir);
+            notes = new NotesStorage(config.Data.SaveFilesDir);
 
             EnsureNoExtraFiles();
         }
 
         private void EnsureNoExtraFiles()
         {
-            foreach (var file in Directory.GetFiles(config.SaveFilesDir))
+            foreach (var file in Directory.GetFiles(config.Data.SaveFilesDir))
             {
                 if (!file.EndsWith(".ssnf"))
                     continue;
@@ -92,20 +92,21 @@ namespace SimplySaveWindows
         {
             return new ConfigData()
             {
-                DataDirPath = config.SaveFilesDir,
-                Sort = config.Sort
+                DataDirPath = config.Data.SaveFilesDir,
+                Sort = config.Data.Sort
             };
         }
 
         public void SaveConfig(ConfigData data)
         {
-            config.SaveFilesDir = data.DataDirPath;
-            config.Sort = data.Sort;
+            config.Data.SaveFilesDir = data.DataDirPath;
+            config.Data.Sort = data.Sort;
             config.Save();
-            if (config.SaveFilesDir != metadata.SaveFilesDir)
-                metadata = new MetadataStorage(config.SaveFilesDir);
-            if (config.SaveFilesDir != notes.SaveFilesDir)
-                notes = new NotesStorage(config.SaveFilesDir);
+
+            if (config.Data.SaveFilesDir != metadata.SaveFilesDir)
+                metadata = new MetadataStorage(config.Data.SaveFilesDir);
+            if (config.Data.SaveFilesDir != notes.SaveFilesDir)
+                notes = new NotesStorage(config.Data.SaveFilesDir);
         }
 
     }

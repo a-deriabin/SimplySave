@@ -58,6 +58,7 @@ namespace SimplySaveWindows
             this.Name = "Form1";
             this.Text = "SimplySave (v1.0)";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.ResizeEnd += new System.EventHandler(this.Form1_ResizeEnd);
             ((System.ComponentModel.ISupportInitialize)(this.webView)).EndInit();
             this.ResumeLayout(false);
 
