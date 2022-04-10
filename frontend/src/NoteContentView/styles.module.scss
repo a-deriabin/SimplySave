@@ -10,10 +10,22 @@
     line-height: 18px;
 
     & p {
-        margin: 4px 0 0 0;
+        margin: 0;
     }
     & h1, h2, h3 {
         margin: 0;
+    }
+    & blockquote {
+        padding: 0 1em;
+        margin: 0;
+        color: #6a737d;
+        border-left: 0.25em solid #dfe2e5;
+    }
+    & ol {
+        padding-left: 2em;
+    }
+    & ul {
+        padding-left: 2em;
     }
 }
 

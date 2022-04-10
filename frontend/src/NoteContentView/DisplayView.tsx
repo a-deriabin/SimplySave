@@ -9,10 +9,14 @@ type PropsType = {
 }
 
 function DisplayView(props: PropsType) {
+    const newContent = props.content.replace(
+        /\n/gi, '\n &nbsp;\n'
+    )
+
     return (
         <div className={styles.displayView}>
             <ReactMarkdown remarkPlugins={[remarkBreaks, remarkGfm]}>
-                {props.content.replace(/\n/gi, '\n &nbsp;')}
+                {newContent}
             </ReactMarkdown>
         </div>
     );
