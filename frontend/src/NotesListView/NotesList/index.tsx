@@ -30,7 +30,7 @@ function NotesList(props: PropsType) {
 
     const isDownPressed = useKeyPress('ArrowDown')
     useEffect(() => {
-        if (isDownPressed && notes.length > 0 && !isAnyDialogOpen()) {
+        if (isDownPressed && notes.length > 0 && !notesData.isEditingNote && !isAnyDialogOpen()) {
             const lastId = notes.length - 1
             const openId = notes.findIndex(x => x.id === notesData.openNoteId)
             const id = openId === -1 ? 0 : openId + 1 > lastId ? 0 : openId + 1
@@ -40,13 +40,13 @@ function NotesList(props: PropsType) {
 
     const isUpPressed = useKeyPress('ArrowUp')
     useEffect(() => {
-        if (isUpPressed && notes.length > 0 && !isAnyDialogOpen()) {
+        if (isUpPressed && notes.length > 0 && !notesData.isEditingNote && !isAnyDialogOpen()) {
             const lastId = notes.length - 1
             const openId = notes.findIndex(x => x.id === notesData.openNoteId)
             const id = openId === -1 ? lastId : openId - 1 < 0 ? lastId : openId - 1
             dispatch(loadNoteContent(notes[id].id))
         }
-    })
+    }, [dispatch, isUpPressed, notes, notesData.isEditingNote, notesData.openNoteId])
 
     const handleMenuClose = () => setIsMenuOpen(false)
     const handleContextMenuOpen = (id: string) => (e: React.MouseEvent) => {

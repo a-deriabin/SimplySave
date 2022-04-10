@@ -21,7 +21,7 @@ function FolderList() {
 
     const isArrowDown = useKeyPress('ArrowDown', 'ctrl')
     useEffect(() => {
-        if (isArrowDown && !isAnyDialogOpen()) {
+        if (isArrowDown && !notesData.isEditingNote && !isAnyDialogOpen()) {
             const folders = notesData.foldersList
             const curId = notesData.openFolderId
             const curIndex = folders.findIndex(x => x.id === curId)
@@ -29,11 +29,11 @@ function FolderList() {
             const nextId = nextIndex === -1 ? null : folders[nextIndex].id
             dispatch(selectFolder(nextId))
         }
-    }, [isArrowDown, dispatch, notesData.foldersList, notesData.openFolderId])
+    }, [isArrowDown, dispatch, notesData.foldersList, notesData.openFolderId, notesData.isEditingNote])
 
     const isArrowUp = useKeyPress('ArrowUp', 'ctrl')
     useEffect(() => {
-        if (isArrowUp && !isAnyDialogOpen()) {
+        if (isArrowUp && !notesData.isEditingNote && !isAnyDialogOpen()) {
             const folders = notesData.foldersList
             const curId = notesData.openFolderId
             const curIndex = folders.findIndex(x => x.id === curId)
@@ -41,7 +41,7 @@ function FolderList() {
             const nextId = nextIndex === -1 ? null : folders[nextIndex].id
             dispatch(selectFolder(nextId))
         }
-    }, [isArrowUp, dispatch, notesData.foldersList, notesData.openFolderId])
+    }, [isArrowUp, dispatch, notesData.foldersList, notesData.openFolderId, notesData.isEditingNote])
 
     const handleMenuClose = () => setIsMenuOpen(false)
     const handleContextMenuOpen = (id: string) => (e: React.MouseEvent) => {
