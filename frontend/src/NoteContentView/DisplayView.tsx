@@ -8,9 +8,23 @@ type PropsType = {
     content: string,
 }
 
+const newlineReplaceFn = (substring: string) => {
+    return substring.split('').join('&nbsp;')
+}
+const specialBlockReplaceFn = (substring: string) => {
+    return substring + '\n'
+}
+const preReplaceFn = (substring: string) => {
+    return '\n' + substring
+}
+
 function DisplayView(props: PropsType) {
     const newContent = props.content.replace(
-        /\n/gi, '\n &nbsp;\n'
+        /\n(\n)+/gi, newlineReplaceFn
+    ).replace(
+        /(#|>|\\* |-).*?\n/gi, specialBlockReplaceFn
+    ).replace(
+        /\n```*?```/gi, preReplaceFn
     )
 
     return (
