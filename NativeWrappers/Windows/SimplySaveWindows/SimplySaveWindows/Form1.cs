@@ -41,6 +41,7 @@ namespace SimplySaveWindows
                 webView.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
                 webView.CoreWebView2.NewWindowRequested += CoreWebView2_NewWindowRequested;
                 webView.CoreWebView2.WebResourceRequested += CoreWebView2_WebResourceRequested;
+                webView.CoreWebView2.DocumentTitleChanged += CoreWebView2_DocumentTitleChanged;
                 
                 webView.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.All);
 
@@ -59,6 +60,11 @@ namespace SimplySaveWindows
                 this.Close();
                 return;
             }
+        }
+
+        private void CoreWebView2_DocumentTitleChanged(object sender, object e)
+        {
+            this.Text = webView.CoreWebView2.DocumentTitle;
         }
 
         private void CoreWebView2_WebResourceRequested(object sender, CoreWebView2WebResourceRequestedEventArgs e)
