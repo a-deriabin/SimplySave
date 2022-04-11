@@ -56,7 +56,7 @@ namespace SimplySaveWindows
             this.Controls.Add(this.webView);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "SimplySave (v1.0)";
+            this.Text = "SimplySave (v1.0.1)";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResizeEnd += new System.EventHandler(this.Form1_ResizeEnd);
             ((System.ComponentModel.ISupportInitialize)(this.webView)).EndInit();
