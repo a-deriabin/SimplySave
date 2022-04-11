@@ -11,6 +11,8 @@ import {sortByType} from "./utils/sortByType";
 import {useKeyPress} from "../../shared/hooks/useKeyPress";
 import {loadNoteContent} from "../../shared/redux/notes/notesLoadContent";
 import isAnyDialogOpen from "../../shared/utils/isAnyDialogOpen";
+import styles from './styles.module.scss';
+import Box from "../../shared/components/Box";
 
 type PropsType = {
     isMobile: boolean,
@@ -26,7 +28,7 @@ function NotesList(props: PropsType) {
 
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [menuPostion, setMenuPosition] = useState<PositionType>({x: 0, y: 0})
-    const [menuForId, setMenuForId] = useState<string|null>(null)
+    const [menuForId, setMenuForId] = useState<string | null>(null)
 
     const isDownPressed = useKeyPress('ArrowDown')
     useEffect(() => {
@@ -66,23 +68,25 @@ function NotesList(props: PropsType) {
     notes = sortByType(notes, sort)
 
     return (
-        <Stack direction='column'>
-            <NoteContextMenu
-                targetNoteId={menuForId}
-                isOpen={isMenuOpen}
-                onClose={handleMenuClose}
-                position={menuPostion}
-            />
-            {notes.map(note => (
-                <NoteEntry
-                    note={note}
-                    key={note.id}
-                    isMobile={props.isMobile}
-                    onContextMenu={handleContextMenuOpen(note.id)}
+        <Box className={styles.notesList}>
+            <Stack direction='column'>
+                <NoteContextMenu
+                    targetNoteId={menuForId}
+                    isOpen={isMenuOpen}
+                    onClose={handleMenuClose}
+                    position={menuPostion}
                 />
-            ))}
-            {notes.length === 0 && <Placeholder />}
-        </Stack>
+                {notes.map(note => (
+                    <NoteEntry
+                        note={note}
+                        key={note.id}
+                        isMobile={props.isMobile}
+                        onContextMenu={handleContextMenuOpen(note.id)}
+                    />
+                ))}
+                {notes.length === 0 && <Placeholder/>}
+            </Stack>
+        </Box>
     );
 }
 

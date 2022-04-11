@@ -14,7 +14,7 @@ function NotesListView(props: PropsType) {
     return (
         <Stack direction='row' className={styles.notesListView}>
             <Folders />
-            <Stack direction='column' flex={1}>
+            <Stack direction='column' flex={1} className={styles.notesListStack}>
                 <SearchBar />
                 <NotesList isMobile={props.isMobile} />
             </Stack>

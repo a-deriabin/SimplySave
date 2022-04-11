@@ -1,7 +1,13 @@
+.notesList {
+    overflow-y: auto;
+    height: 100%;
+}
+
 .noteEntry {
     height: 50px;
     padding: 5px 15px;
     cursor: pointer;
+    flex-shrink: 0;
 
     &:hover {
         background-color: var(--color-highlight-pale);
