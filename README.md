@@ -12,7 +12,7 @@ SimplySave is a notes app with support of password-protected notes, encrypted us
 * No network usage
 
 ## Download
-[Windows 1.0.3 (.zip)](https://github.com/a-deriabin/SimplySave/releases/download/1.0.3/SimplySave-Windows-1.0.3.zip)
+* [Windows 1.0.3 (.zip)](https://github.com/a-deriabin/SimplySave/releases/download/1.0.3/SimplySave-Windows-1.0.3.zip)
 
 ## Technical details
 The entire UI is implemented using HTML5, React.JS, Redux. CryptoJS dependency is used for data encryption.
