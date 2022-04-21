@@ -1,6 +1,9 @@
 # SimplySave
 SimplySave is a notes app with support of password-protected notes, encrypted using AES-256 encryption algorithm. All notes are stored as local files, which means you are in total control of your data. You are also free to use any cloud service like Dropbox or Google Drive to backup and sync your notes across devices.
 
+## Preview
+![image](https://user-images.githubusercontent.com/2338967/164563586-8721c74e-2d54-49f4-aa83-96e0c378aad5.png)
+
 ## Features
 * Folders with customizable icons
 * Password-protected notes
