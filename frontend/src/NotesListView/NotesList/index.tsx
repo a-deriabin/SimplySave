@@ -62,7 +62,9 @@ function NotesList(props: PropsType) {
     }
 
     if (notesData.searchStr !== '') {
-        notes = notes.filter(note => note.title.includes(notesData.searchStr))
+        notes = notes.filter(note =>
+            note.title.toLowerCase().includes(notesData.searchStr.toLowerCase())
+        )
     }
 
     notes = sortByType(notes, sort)
