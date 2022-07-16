@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="theme-color" content="#000000"/>
-    <title>SimplySave (v1.0.3)</title>
+    <title>SimplySave (v1.0.4)</title>
     <% if (process.env.NODE_ENV === 'development') { %>
     <script type="text/javascript">
         // Placeholder data. Real data will be managed by wrapper app.
@@ -148,59 +148,53 @@
         // C# WebView2 is bugged when using async code, so using sync versions for now.
         // Keeping JS API for future compatibility.
 
+        const nativeApi = window.chrome.webview.hostObjects.sync.dotnet || NativeInterface;
+
         window._simplysave_create_note = async (createData) => {
-            return JSON.parse(window.chrome.webview.hostObjects.sync.dotnet.CreateNote(
+            return JSON.parse(nativeApi.CreateNote(
                 JSON.stringify(createData)
             ))
         }
         window._simplysave_save_note = async (saveData) => {
-            return JSON.parse(window.chrome.webview.hostObjects.sync.dotnet.SaveNote(
+            return JSON.parse(nativeApi.SaveNote(
                 JSON.stringify(saveData)
             ))
         }
         window._simplysave_rename_note = async (renameData) => {
-            return JSON.parse(window.chrome.webview.hostObjects.sync.dotnet.RenameNote(
+            return JSON.parse(nativeApi.RenameNote(
                 JSON.stringify(renameData)
             ))
         }
         window._simplysave_note_change_folder = async (noteId, folderId) => {
-            return JSON.parse(window.chrome.webview.hostObjects.sync.dotnet.SetNoteFolder(
+            return JSON.parse(nativeApi.SetNoteFolder(
                 noteId, folderId
             ))
         }
         window._simplysave_delete_note = async (id) => {
-            return JSON.parse(window.chrome.webview.hostObjects.sync.dotnet.DeleteNote(id))
+            return JSON.parse(nativeApi.DeleteNote(id))
         }
         window._simplysave_load = async () => {
             return {
-                notes: JSON.parse(
-                    window.chrome.webview.hostObjects.sync.dotnet.LoadNotes()
-                ),
-                folders: JSON.parse(
-                    window.chrome.webview.hostObjects.sync.dotnet.LoadFolders()
-                ),
+                notes: JSON.parse(nativeApi.LoadNotes()),
+                folders: JSON.parse(nativeApi.LoadFolders()),
             }
         }
         window._simplysave_load_content = async (noteId) => {
-            return window.chrome.webview.hostObjects.sync.dotnet.LoadContent(noteId)
+            return nativeApi.LoadContent(noteId)
         }
         window._simplysave_set_folders = async (foldersList) => {
-            window.chrome.webview.hostObjects.sync.dotnet.SetFolders(
-                JSON.stringify(foldersList)
-            )
+            nativeApi.SetFolders(JSON.stringify(foldersList))
         }
 
         window._simplysave_load_config = async () => {
-            return JSON.parse(window.chrome.webview.hostObjects.sync.dotnet.LoadConfig())
+            return JSON.parse(nativeApi.LoadConfig())
         }
         window._simplysave_save_config = async (config) => {
-            return JSON.parse(window.chrome.webview.hostObjects.sync.dotnet.SaveConfig(
-                JSON.stringify(config)
-            ))
+            return JSON.parse(nativeApi.SaveConfig(JSON.stringify(config)))
         }
 
         window._simplysave_folder_dialog = async () => {
-            return window.chrome.webview.hostObjects.sync.dotnet.ShowFolderDialog()
+            return nativeApi.ShowFolderDialog()
         }
     </script>
     <% } %>
