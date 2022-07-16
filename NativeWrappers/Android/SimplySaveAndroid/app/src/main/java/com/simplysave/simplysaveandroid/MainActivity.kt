@@ -8,7 +8,6 @@ import android.webkit.*
 import androidx.webkit.WebResourceErrorCompat
 import androidx.webkit.WebViewAssetLoader
 import androidx.webkit.WebViewClientCompat
-import androidx.webkit.WebViewCompat
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +23,9 @@ class MainActivity : AppCompatActivity() {
         webView.webChromeClient = MyWebChromeClient()
         webView.webViewClient = LocalContentWebViewClient(assetLoader)
         webView.settings.javaScriptEnabled = true
+
+        val apiInterface = ApiInterface()
+        webView.addJavascriptInterface(apiInterface, "NativeInterface")
 
         webView.loadUrl("https://appassets.androidplatform.net/assets/index.html")
     }
