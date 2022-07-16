@@ -17,6 +17,9 @@ const specialBlockReplaceFn = (substring: string) => {
 const preReplaceFn = (substring: string) => {
     return '\n' + substring
 }
+const dashReplaceFn = (substring: string) => {
+    return substring.replace('\n&nbsp;\n', '\n&nbsp;\n\n')
+}
 
 function DisplayView(props: PropsType) {
     const newContent = props.content.replace(
@@ -25,7 +28,11 @@ function DisplayView(props: PropsType) {
         /(#|>|\\* |-).*?\n/gi, specialBlockReplaceFn
     ).replace(
         /\n```*?```/gi, preReplaceFn
+    ).replace(
+        /\n&nbsp;\n---/gi, dashReplaceFn
     )
+
+    console.log(newContent)
 
     return (
         <div className={styles.displayView}>
