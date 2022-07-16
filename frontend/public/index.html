@@ -148,7 +148,7 @@
         // C# WebView2 is bugged when using async code, so using sync versions for now.
         // Keeping JS API for future compatibility.
 
-        const nativeApi = window.chrome.webview.hostObjects.sync.dotnet || NativeInterface;
+        const nativeApi = window?.chrome?.webview?.hostObjects?.sync?.dotnet || window?.NativeInterface;
 
         window._simplysave_create_note = async (createData) => {
             return JSON.parse(nativeApi.CreateNote(
